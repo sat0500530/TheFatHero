@@ -31,7 +31,6 @@ public class UIManager : MonoBehaviour
     public Text levelUpInfoText;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI powerText;
-    public TextMeshProUGUI defenseText;
     public TextMeshProUGUI dexText;
     public Button[] statusUpButtons;
     public TextMeshProUGUI statusPoint;
@@ -67,7 +66,6 @@ public class UIManager : MonoBehaviour
     public Image key;
     public TextMeshProUGUI monHP;
     public TextMeshProUGUI monPow;
-    public TextMeshProUGUI monDefense;
     public TextMeshProUGUI monDex;
     public TextMeshProUGUI monName;
     public TextMeshProUGUI monExp;
@@ -224,7 +222,6 @@ public class UIManager : MonoBehaviour
         // 스텟
         hpText.text = $"<color=#D1180B>체력</color>  {status.CurrentHp}/{status.MaxHp}";
         powerText.text = $"<color=#FFD400>파워</color>  {status.Power}{(status.Buff ? $"(버프)" : "")}";
-        defenseText.text = $"<color=#0000FF>방어</color>  {status.Defense}";
         dexText.text = $"<color=#80FF00>민첩</color>  {status.Dex}";
 
 
@@ -251,9 +248,6 @@ public class UIManager : MonoBehaviour
                 break;
             case "power" :
                 status.Power++;
-                break;
-            case "defense" :
-                status.Defense++;
                 break;
             case "dex" :
                 status.Dex+=3;
@@ -364,7 +358,6 @@ public class UIManager : MonoBehaviour
             tileName.text = "몬스터";
             monHP.text = "<color=#D1180B>체력</color> : " + monster.Status.MaxHp;
             monPow.text = "<color=#FFD400>파워</color> : " + monster.Status.Power;
-            monDefense.text = "<color=#0000FF>방어</color> : " + monster.Status.Defense;
             monDex.text = "<color=#80FF00>민첩</color> : " + monster.Status.Dex;
             monExp.text = "<color=#8A2BE2>EXP</color>  + " + monster.Status.Exp;
             monName.text = monster.Name;
@@ -412,7 +405,6 @@ public class UIManager : MonoBehaviour
             key.enabled = true;
             monHP.text = "<color=#D1180B>체력</color> : " + monster.Status.MaxHp;
             monPow.text = "<color=#FFD400>파워</color> : " + monster.Status.Power;
-            monDefense.text = "<color=#0000FF>방어</color> : " + monster.Status.Defense;
             monDex.text = "<color=#80FF00>민첩</color> : " + monster.Status.Dex;
             monExp.text = "<color=#8A2BE2>EXP</color>  + " + monster.Status.Exp;
             monName.text = monster.Name;
@@ -429,7 +421,6 @@ public class UIManager : MonoBehaviour
             tileName.text = "드래곤";
             monHP.text = "<color=#D1180B>체력</color> : " + monster.Status.MaxHp;
             monPow.text = "<color=#FFD400>파워</color> : " + monster.Status.Power;
-            monDefense.text = "<color=#0000FF>방어</color> : " + monster.Status.Defense;
             monDex.text = "<color=#80FF00>민첩</color> : " + monster.Status.Dex;
             monExp.text = "<color=#8A2BE2>EXP</color>  + " + monster.Status.Exp;
             monName.text = monster.Name;

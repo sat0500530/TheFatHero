@@ -8,7 +8,6 @@ public class Status
     private int maxHp;
     private int currentHp;
     private int power;
-    private int defense;
     private int dex;
     private int exp = 0;
 
@@ -70,15 +69,6 @@ public class Status
         }
     }
 
-    public int Defense
-    {
-        get { return defense; }
-        set 
-        { 
-            defense = Mathf.Max(value, 0);
-            if (player) UIManager.Instance.UpdateKnightStatusInfo();
-        }
-    }
 
     public int Dex
     {
@@ -108,7 +98,7 @@ public class Status
 
     }
 
-    public Status(int maxHp, int power, int defense, int dex, int exp, bool isPlayer = false)
+    public Status(int maxHp, int power, int dex, int exp, bool isPlayer = false)
     {
         player = isPlayer;
 
@@ -116,7 +106,6 @@ public class Status
         Exp = exp;
         currentHp = maxHp;
         Power = power;
-        Defense = defense;
         Dex = dex;
 
     }

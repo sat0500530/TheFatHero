@@ -203,7 +203,6 @@ public enum EventType
 {
     HP,
     Power,
-    Defense,
     Dex,
     Exp,
 

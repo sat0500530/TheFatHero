@@ -44,10 +44,6 @@ public class FieldEvent : MonoBehaviour
                 _gameManager.knight.Status.Power += info.EffectAmount;
 
             break;
-            case EventType.Defense:
-                _gameManager.knight.Status.Defense += info.EffectAmount;
-
-            break;
             case EventType.Dex:
                 _gameManager.knight.Status.Dex += info.EffectAmount;
 

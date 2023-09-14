@@ -739,7 +739,6 @@ public class GameManager : MonoBehaviour
                 knight.Status.CurrentHp += _dataManager.ARTI_AllStatUp_Value;
                 knight.Status.Dex       += _dataManager.ARTI_AllStatUp_Value;
                 knight.Status.Power     += _dataManager.ARTI_AllStatUp_Value;
-                knight.Status.Defense   += _dataManager.ARTI_AllStatUp_Value;
                 break;
             case ArtifactType.DexUp :
                 knight.Status.Dex += _dataManager.ARTI_DEXUP_Value;
