@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public ResourceManager _resourceManager;
     private DataManager _dataManager;
     private UIManager _uiManager;
+    private PlayerStateController _playerStateController;
     public CameraManager CameraManager { get; private set; }
     public MapManager MapManager    { get; private set; }
 
@@ -130,6 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        _playerStateController = GameObject.Find(nameof(PlayerStateController)).GetComponent<PlayerStateController>();
         _resourceManager = GetComponentInChildren<ResourceManager>();
         _dataManager = GameObject.Find(nameof(DataManager)).GetComponent<DataManager>();
         MapManager = GetComponentInChildren<MapManager>();
@@ -187,7 +189,8 @@ public class GameManager : MonoBehaviour
             whoseTurn = nameof(knight);
             MapManager.BuildAllField();
             yield return StartCoroutine(PlayPlayer(knight));
-            GetHunger();
+            GetHunger(10);
+            CalculatePlayerState();
             if (DotDamageTime)
             {
                 // [TODO] 도트 데미지 액션 출력
@@ -225,9 +228,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GetHunger()
+    public void GetHunger(int amount)
     {
-        knight.Status.Hunger += 10;
+        knight.Status.Hunger += amount;
         _uiManager.UpdateKnightStatusInfo();
     }
 
@@ -780,29 +783,39 @@ public class GameManager : MonoBehaviour
     void CalculatePlayerState()
     {
         Status status = knight.Status;
-        int hungerValue = status.Hunger;
+        float hungerValue = status.Hunger;
 
-        // Calculate the probability of each state based on hunger and temperature
-        float coldProbability = CalculateColdProbability(hungerValue);
+        // Calculate the probability of each state change based on hunger and temperature
+        float stateChangeProbability = hungerValue / 100;
 
         // Randomly assign states
-        float randomValue = Random.value;
-        if (randomValue < coldProbability)
+        float randomValue = UnityEngine.Random.value;
+        Debug.Log(randomValue);
+        Debug.Log(stateChangeProbability);
+
+        if (randomValue < stateChangeProbability)
         {
-            stateController.AddState(PlayerState.Cold);
+            Debug.Log("드러옴");
+
+            // Enum.GetValues를 사용하여 모든 PlayerState 값을 가져옴
+            PlayerState[] allStates = (PlayerState[])System.Enum.GetValues(typeof(PlayerState));
+
+            // 랜덤으로 상태 선택
+            int randomIndex = UnityEngine.Random.Range(0, allStates.Length);
+            PlayerState randomState = allStates[randomIndex];
+
+            // 상태 이름과 설명을 설정
+            string stateName = _playerStateController.GetStateName(randomState); // 이 함수를 구현하여 상태 이름을 가져옴
+            string stateDescription = _playerStateController.GetStateDescription(randomState); // 이 함수를 구현하여 상태 설명을 가져옴
+
+
+            // 선택된 상태 추가
+            _playerStateController.AddState(randomState, stateName, stateDescription);
         }
         else
         {
-            // Add other state assignments here
+            // 다른 상태 할당 코드 추가
         }
-    }
-
-    //감기 계산 식
-    float CalculateColdProbability(int hunger)
-    {
-        // Calculate the probability of getting a cold based on hunger and temperature
-        // You can define your own logic here
-        return 0.5f; // Example: 50% chance of getting cold
     }
 
     public void ClearBoss()

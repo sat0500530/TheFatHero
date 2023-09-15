@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     private GameManager _gameManager;
+    private PlayerStateController _playerStateController;
     private Player _player1;
     private Player _player2;
 
@@ -85,6 +86,9 @@ public class UIManager : MonoBehaviour
     public Transform playerArtifactListTr;
     public GameObject playerHasArtifactPrefab;
 
+    public GameObject playerState;
+    public GameObject playerStatePrefab;
+
 
     private Dictionary<int, string> _princessSkillInfoDict = new()
     {
@@ -107,7 +111,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         somethingBoxObj.SetActive(false);
-        
+
+        _playerStateController = GameObject.Find(nameof(PlayerStateController)).GetComponent<PlayerStateController>();
         _gameManager = GameObject.Find(nameof(GameManager)).GetComponent<GameManager>();
         _player1 = GameObject.Find("Knight").GetComponent<Player>();
         _player2 = GameObject.Find(nameof(Princess)).GetComponent<Player>();
@@ -226,7 +231,7 @@ public class UIManager : MonoBehaviour
         
         // 스텟
         hpText.text = $"<color=#D1180B>체력</color>  {status.CurrentHp}/{status.MaxHp}";
-        powerText.text = $"<color=#FFD400>파워</color>  {status.Power}{(status.Buff ? $"(버프)" : "")}";
+        powerText.text = $"<color=#FFD400>파워</color>  {(status.IsCold ? $"<color=#D1180B>{status.Power}</color>" : $"{status.Power}")} {(status.Buff ? $"(버프)" : "")}";
         dexText.text = $"<color=#80FF00>민첩</color>  {status.Dex}";
 
 
@@ -470,5 +475,30 @@ public class UIManager : MonoBehaviour
     {
         var obj = Instantiate(playerHasArtifactPrefab, playerArtifactListTr);
         obj.GetComponent<UIArtifact>().Init(artifact);
+    }
+
+    public void UpdateStateUI()
+    {
+        int childCount = playerState.transform.childCount;
+
+        if ( childCount != 0)
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform child = playerState.transform.GetChild(i);
+                Destroy(child.gameObject);
+            }
+
+        }
+
+        foreach (StateInfo num in _playerStateController.states)
+        {
+            if(num != null)
+            {
+                var obj = Instantiate(playerStatePrefab, playerState.transform);
+                obj.GetComponent<UIState>().Init(num);
+            }
+        }
+
     }
 }

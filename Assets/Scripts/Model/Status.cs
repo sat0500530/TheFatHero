@@ -13,6 +13,7 @@ public class Status
     private int hunger = 0;
 
     private bool _buff;
+    private bool _isCold;
 
     public int Hunger
     {
@@ -29,6 +30,16 @@ public class Status
         set
         {
             _buff = value;
+            if (player) UIManager.Instance.UpdateKnightStatusInfo();
+        }
+    }
+
+    public bool IsCold
+    {
+        get => _isCold;
+        set
+        {
+            _isCold = value;
             if (player) UIManager.Instance.UpdateKnightStatusInfo();
         }
     }
@@ -70,7 +81,7 @@ public class Status
     {
         get
         {
-            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0);
+            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0);
         }
         set
         {
