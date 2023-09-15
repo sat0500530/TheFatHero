@@ -19,7 +19,7 @@ public class Status
         get { return hunger;  }
         set
         {
-
+            hunger = Mathf.Clamp(value, 0, 100);
         }
     }
 

@@ -187,11 +187,13 @@ public class GameManager : MonoBehaviour
             whoseTurn = nameof(knight);
             MapManager.BuildAllField();
             yield return StartCoroutine(PlayPlayer(knight));
+            GetHunger();
             if (DotDamageTime)
             {
                 // [TODO] 도트 데미지 액션 출력
                 knight.Status.CurrentHp -= GetDotDam();
             }
+
 
             Camera.main.backgroundColor = new Color(1, 0.6650944f, 0.9062265f, 1);
             whoseTurn = nameof(princess);
@@ -221,6 +223,12 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void GetHunger()
+    {
+        knight.Status.Hunger += 10;
+        _uiManager.UpdateKnightStatusInfo();
     }
 
     public int GetDotDam()
