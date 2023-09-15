@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     public FieldPiece CurrentFieldPiece { get; set; }
 
     private int _selectedIdx;
-
-    public float hunger;
-    public float bodyTemperature;
     public int SelectedIdx
     {
         get => _selectedIdx;

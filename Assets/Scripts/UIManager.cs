@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
     public Button[] statusUpButtons;
     public TextMeshProUGUI statusPoint;
     public RectTransform expBar;
+    public RectTransform hungryBar;
 
     public GameObject doorKey;
     public TextMeshProUGUI skillInfoText;
@@ -216,8 +217,12 @@ public class UIManager : MonoBehaviour
         knightLvText.text = $"용사 LV.{status.Level}";
         levelUpInfoText.text = $"EXP {status.Exp}/{DataManager.Instance.ExpNeedForLevelUp[status.Level - 1]}";
         
-        int calculWidth = 350 *  status.Exp/DataManager.Instance.ExpNeedForLevelUp[status.Level - 1];
-        expBar.sizeDelta = new Vector2(calculWidth, expBar.sizeDelta.y);
+        int calculWidth1 = 280 *  status.Exp/DataManager.Instance.ExpNeedForLevelUp[status.Level - 1];
+        expBar.sizeDelta = new Vector2(calculWidth1, expBar.sizeDelta.y);
+
+        int calculWidth2 = 290 * status.Hunger / 100;
+        hungryBar.sizeDelta = new Vector2(calculWidth2, hungryBar.sizeDelta.y);
+        
         
         // 스텟
         hpText.text = $"<color=#D1180B>체력</color>  {status.CurrentHp}/{status.MaxHp}";

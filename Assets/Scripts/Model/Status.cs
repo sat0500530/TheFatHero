@@ -10,8 +10,18 @@ public class Status
     private int power;
     private int dex;
     private int exp = 0;
+    private int hunger = 0;
 
     private bool _buff;
+
+    public int Hunger
+    {
+        get { return hunger;  }
+        set
+        {
+
+        }
+    }
 
     public bool Buff
     {

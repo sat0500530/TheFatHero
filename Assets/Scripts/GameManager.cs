@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public CameraManager CameraManager { get; private set; }
     public MapManager MapManager    { get; private set; }
 
-    public Player player;
-    public PlayerStateController stateController;
+    private Player player;
+    private PlayerStateController stateController;
 
     
     public bool HasKey { get; set; }
@@ -771,11 +771,11 @@ public class GameManager : MonoBehaviour
     // 플레이어 상태 계산
     void CalculatePlayerState()
     {
-        float hungerValue = player.hunger;
-        float temperatureValue = player.bodyTemperature;
+        Status status = knight.Status;
+        int hungerValue = status.Hunger;
 
         // Calculate the probability of each state based on hunger and temperature
-        float coldProbability = CalculateColdProbability(hungerValue, temperatureValue);
+        float coldProbability = CalculateColdProbability(hungerValue);
 
         // Randomly assign states
         float randomValue = Random.value;
@@ -790,7 +790,7 @@ public class GameManager : MonoBehaviour
     }
 
     //감기 계산 식
-    float CalculateColdProbability(float hunger, float temperature)
+    float CalculateColdProbability(int hunger)
     {
         // Calculate the probability of getting a cold based on hunger and temperature
         // You can define your own logic here
