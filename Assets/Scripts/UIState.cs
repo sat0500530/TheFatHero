@@ -10,6 +10,7 @@ public class UIState : MonoBehaviour
 
     public TextMeshProUGUI name;
     public TextMeshProUGUI description;
+    public Text turnText;
 
 
     public void Init(StateInfo stateInfo)
@@ -18,6 +19,7 @@ public class UIState : MonoBehaviour
         _stateInfo = stateInfo;
         name.text = stateInfo.stateName;
         description.text = stateInfo.stateDescription;
+        turnText.text = stateInfo.count.ToString() + "ео";
     }
 
 }

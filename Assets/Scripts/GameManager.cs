@@ -189,8 +189,9 @@ public class GameManager : MonoBehaviour
             whoseTurn = nameof(knight);
             MapManager.BuildAllField();
             yield return StartCoroutine(PlayPlayer(knight));
-            GetHunger(10);
+            _playerStateController.DecreaseStateCount();
             CalculatePlayerState();
+            GetHunger(10);
             if (DotDamageTime)
             {
                 // [TODO] 도트 데미지 액션 출력
@@ -780,6 +781,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 플레이어 상태 계산
+    private PlayerState randomState;
     void CalculatePlayerState()
     {
         Status status = knight.Status;
@@ -790,27 +792,48 @@ public class GameManager : MonoBehaviour
 
         // Randomly assign states
         float randomValue = UnityEngine.Random.value;
-        Debug.Log(randomValue);
-        Debug.Log(stateChangeProbability);
 
         if (randomValue < stateChangeProbability)
         {
-            Debug.Log("드러옴");
 
             // Enum.GetValues를 사용하여 모든 PlayerState 값을 가져옴
             PlayerState[] allStates = (PlayerState[])System.Enum.GetValues(typeof(PlayerState));
 
-            // 랜덤으로 상태 선택
-            int randomIndex = UnityEngine.Random.Range(0, allStates.Length);
-            PlayerState randomState = allStates[randomIndex];
+            bool stateAdded = false;
+            
 
-            // 상태 이름과 설명을 설정
-            string stateName = _playerStateController.GetStateName(randomState); // 이 함수를 구현하여 상태 이름을 가져옴
-            string stateDescription = _playerStateController.GetStateDescription(randomState); // 이 함수를 구현하여 상태 설명을 가져옴
+            while (!stateAdded)
+            {
+                // 랜덤으로 상태 선택
+                int randomIndex = Random.Range(0, allStates.Length);
+                randomState = allStates[randomIndex];
 
+                // 이미 선택한 상태와 같은 상태가 있는지 확인
+                bool hasSameState = _playerStateController.states.Exists(stateInfo => stateInfo.state == randomState);
 
-            // 선택된 상태 추가
-            _playerStateController.AddState(randomState, stateName, stateDescription);
+                if (!hasSameState)
+                {
+                    stateAdded = true;
+                }
+                else
+                {
+                    // 모든 상태가 이미 중복될 때 루프 종료
+                    if (_playerStateController.states.Count == allStates.Length)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (stateAdded)
+            {
+                // 상태 이름과 설명을 설정
+                string stateName = _playerStateController.GetStateName(randomState);
+                string stateDescription = _playerStateController.GetStateDescription(randomState);
+
+                // 선택된 상태 추가
+                _playerStateController.AddState(randomState, stateName, stateDescription);
+            }
         }
         else
         {

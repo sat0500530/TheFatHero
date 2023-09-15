@@ -3,7 +3,6 @@ using UnityEngine;
 
 public enum PlayerState
 {
-    Normal,
     Cold,
     Fracture,
     Drowsy,
@@ -16,6 +15,7 @@ public class StateInfo
     public PlayerState state;
     public string stateName;
     public string stateDescription;
+    public int count; // 각 상태의 count 추가
 }
 
 public class PlayerStateController : MonoBehaviour
@@ -27,6 +27,7 @@ public class PlayerStateController : MonoBehaviour
     {
         _gameManager = GameObject.Find(nameof(GameManager)).GetComponent<GameManager>();
     }
+
     public void AddState(PlayerState newState, string name, string description)
     {
         // 이미 리스트에 있는 상태인지 확인
@@ -38,6 +39,7 @@ public class PlayerStateController : MonoBehaviour
             // 이미 있는 상태 정보를 업데이트
             existingState.stateName = name;
             existingState.stateDescription = description;
+            existingState.count = 3; // 예시로 count를 3으로 설정
         }
         else
         {
@@ -46,11 +48,10 @@ public class PlayerStateController : MonoBehaviour
             {
                 state = newState,
                 stateName = name,
-                stateDescription = description
+                stateDescription = description,
+                count = 3 // 예시로 count를 3으로 설정
             });
-            AddState(newState);
         }
-
 
         UIManager.Instance.UpdateStateUI();
     }
@@ -71,8 +72,6 @@ public class PlayerStateController : MonoBehaviour
     {
         switch (state)
         {
-            case PlayerState.Normal:
-                return "정상";
             case PlayerState.Cold:
                 return "감기";
             case PlayerState.Fracture:
@@ -91,8 +90,6 @@ public class PlayerStateController : MonoBehaviour
     {
         switch (state)
         {
-            case PlayerState.Normal:
-                return "상태가 정상입니다.";
             case PlayerState.Cold:
                 return "추위로 인해 감기에 걸렸습니다.";
             case PlayerState.Fracture:
@@ -106,28 +103,23 @@ public class PlayerStateController : MonoBehaviour
         }
     }
 
-    void AddState(PlayerState state)
+    // 게임 매니저에서 호출하여 상태의 count를 감소시키는 함수
+    public void DecreaseStateCount()
     {
+        // states 컬렉션의 복사본을 만듭니다.
+        List<StateInfo> stateCopy = new List<StateInfo>(states);
 
-
-        switch (state)
+        foreach (StateInfo stateInfo in stateCopy)
         {
-            case PlayerState.Normal:
-                _gameManager.knight.Status.IsCold = true;
-                break;
-            case PlayerState.Cold:
-                _gameManager.knight.Status.IsCold = true;
-                break;
-            case PlayerState.Fracture:
-                _gameManager.KnightMaxCost -= 1;
-                break;
-            case PlayerState.Drowsy:
-                _gameManager.KnightMaxCost -= 1;
-                break;
-            case PlayerState.Flu:
-                _gameManager.KnightMaxCost -= 1;
-                break;
-        }
-    }
+            stateInfo.count--;
 
+            // 카운트가 0이 되면 상태를 제거
+            if (stateInfo.count <= 0)
+            {
+                RemoveState(stateInfo.state);
+            }
+        }
+
+        UIManager.Instance.UpdateStateUI();
+    }
 }
