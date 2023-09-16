@@ -10,7 +10,7 @@ public class Status
     private int power;
     private int dex;
     private int exp = 0;
-    private int hunger = 50;
+    private int hunger = 90;
 
     private bool _buff;
     private bool _isCold;
@@ -103,11 +103,12 @@ public class Status
     {
         get
         {
-            return power ;
+            //return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0) + (IsFull ? 2 : 0);
+            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0);
         }
         set
         {
-            power = Mathf.Max(value + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0) + (IsFull ? 2 : 0), 1);
+            power = Mathf.Max(value , 1);
             if (player) UIManager.Instance.UpdateKnightStatusInfo();
         }
     }

@@ -48,7 +48,7 @@ public class DataManager : MonoBehaviour
     /// index 0 = 1층에서 도트 데미지를 받기 시작하는 턴 
     /// </summary>
     public List<int> WaveCountByFloor = new()
-    { 10, 10, 10 };
+    { 15, 20, 15 };
 
     
 
