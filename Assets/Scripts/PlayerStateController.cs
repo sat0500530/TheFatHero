@@ -60,9 +60,9 @@ public class PlayerStateController : MonoBehaviour
                 case PlayerState.Fracture:
                     _gameManager.KnightMaxCost -= 1;
                     break;
-                //case PlayerState.Drowsy:
-                //    _gameManager.knight.Status.IsCold = true;
-                //    break;
+                case PlayerState.Drowsy:
+                    _gameManager.knight.Status.IsDrowsy = true;
+                    break;
             }
         }
 
@@ -86,9 +86,9 @@ public class PlayerStateController : MonoBehaviour
             case PlayerState.Fracture:
                 _gameManager.KnightMaxCost += 1;
                 break;
-            //case PlayerState.Drowsy:
-            //    _gameManager.knight.Status.IsCold = false;
-            //    break;
+            case PlayerState.Drowsy:
+                _gameManager.knight.Status.IsDrowsy = false;
+                break;
         }
         UIManager.Instance.UpdateStateUI();
     }
@@ -103,7 +103,7 @@ public class PlayerStateController : MonoBehaviour
             case PlayerState.Fracture:
                 return "골절";
             case PlayerState.Drowsy:
-                return "졸림";
+                return "피로";
             default:
                 return "알 수 없음";
         }
@@ -115,11 +115,11 @@ public class PlayerStateController : MonoBehaviour
         switch (state)
         {
             case PlayerState.Cold:
-                return "감기에 걸려 몸이 허약해집니다. 파워가 1 낮아집니다.";
+                return "감기에 걸려 몸이 허약해집니다. 기사의 파워가 1 낮아집니다. (1보다 낮아지진 않습니다.)";
             case PlayerState.Fracture:
                 return "다리가 부러졌습니다. 기사의 최대 행동력이 1 낮아집니다.";
             case PlayerState.Drowsy:
-                return "피로로 인해 졸립니다.";
+                return "피로로 인해 졸립니다. 기사의 민첩이 50% 감소합니다.";
             default:
                 return "알 수 없는 상태입니다.";
         }

@@ -176,8 +176,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 30}
+  m_AnchoredPosition: {x: 0, y: -5.2805786}
+  m_SizeDelta: {x: 90, y: 40.5613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4352133856811232760
 CanvasRenderer:
@@ -463,7 +463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125.62488, y: -73.1}
+  m_AnchoredPosition: {x: 125.62488, y: -79.2}
   m_SizeDelta: {x: 251.2497, y: 101.8637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7476278968098117609
@@ -540,7 +540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44.7, y: -14.2}
+  m_AnchoredPosition: {x: 44.7, y: -8.1}
   m_SizeDelta: {x: 18.9939, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7745436610871386970
@@ -573,7 +573,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 80c8402fc4cdeb0489d4c256e7262b2e, type: 3}
-    m_FontSize: 22
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -598,5 +598,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: -0.47, y: -1.03}
   m_UseGraphicAlpha: 1

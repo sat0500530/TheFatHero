@@ -15,6 +15,7 @@ public class Status
     private bool _buff;
     private bool _isCold;
     private bool _isFull;
+    private bool _isDrowsy;
 
     public bool IsFull
     {
@@ -22,6 +23,16 @@ public class Status
         set
         {
             _isFull = value;
+            if (player) UIManager.Instance.UpdateKnightStatusInfo();
+        }
+    }
+
+    public bool IsDrowsy
+    {
+        get => _isDrowsy;
+        set
+        {
+            _isDrowsy = value;
             if (player) UIManager.Instance.UpdateKnightStatusInfo();
         }
     }
@@ -104,10 +115,10 @@ public class Status
 
     public int Dex
     {
-        get => dex;
+        get { return dex / (IsDrowsy ? 2 : 1); }
         set
         {
-            dex = Mathf.Max(value, 0);
+            dex = Mathf.Clamp(value, 0, 90);
             if (player) UIManager.Instance.UpdateKnightStatusInfo();
         }
     }

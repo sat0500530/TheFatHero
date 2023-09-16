@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     public RectTransform expBar;
     public RectTransform hungryBar;
     public Image hungryBarImage;
-    public TextMeshProUGUI hungerText;
+    public Text hungerText;
 
     public GameObject doorKey;
     public TextMeshProUGUI skillInfoText;
@@ -232,17 +232,17 @@ public class UIManager : MonoBehaviour
 
         if (status.Hunger >= 75)
         {
-            hungerText.text = $"허기  <color=#001EFF>{status.Hunger}</color>";
+            hungerText.text = $"<color=#001EFF>{status.Hunger}</color>";
             hungryBarImage.color = Color.blue;
         }
         else if (status.Hunger <= 25)
         {
-            hungerText.text = $"허기  <color=#D1180B>{status.Hunger}</color>";
+            hungerText.text = $"<color=#D1180B>{status.Hunger}</color>";
             hungryBarImage.color = Color.red;
         }
         else
         {
-            hungerText.text = $"허기  <color=#429A38>{status.Hunger}</color>";
+            hungerText.text = $"<color=#429A38>{status.Hunger}</color>";
             hungryBarImage.color = Color.green;
         }
 
@@ -261,8 +261,17 @@ public class UIManager : MonoBehaviour
         {
             powerText.text = $"<color=#001EFF>파워</color>  {status.Power} {(status.Buff ? $"(버프)" : "")}";
         }
+
+        if (status.IsDrowsy)
+        {
+            dexText.text = $"<color=#429A38>민첩</color>  <color=#D1180B>{status.Dex}</color>";
+        }
+        else
+        {
+            dexText.text = $"<color=#429A38>민첩</color>  {status.Dex}";
+        }
         
-        dexText.text = $"<color=#429A38>민첩</color>  {status.Dex}";
+
 
 
         statusPoint.text = $"스탯 포인트 <color=#8A2BE2>{_gameManager.StatusPoint}</color>";
