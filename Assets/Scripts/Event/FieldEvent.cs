@@ -33,10 +33,10 @@ public class FieldEvent : MonoBehaviour
     {
         gameObject.SetActive(true);
         _uiImgTxt ??= GetComponent<UIImgText>();
-        _gameManager ??= GameObject.Find(nameof(GameManager)).GetComponent<GameManager>(); 
-        
+        _gameManager ??= GameObject.Find(nameof(GameManager)).GetComponent<GameManager>();
 
-        switch(info.Type){
+
+        switch (info.Type){
             case EventType.HP:
                 _gameManager.knight.Status.CurrentHp += info.EffectAmount;
             break;
@@ -52,8 +52,6 @@ public class FieldEvent : MonoBehaviour
                 _gameManager.knight.Status.Exp += info.EffectAmount;
 
             break;
-
-
 
         }
 

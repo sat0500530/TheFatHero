@@ -5,8 +5,7 @@ public enum PlayerState
 {
     Cold,
     Fracture,
-    Drowsy,
-    Flu
+    Drowsy
 }
 
 [System.Serializable]
@@ -50,7 +49,21 @@ public class PlayerStateController : MonoBehaviour
                 stateName = name,
                 stateDescription = description,
                 count = 3 // 예시로 count를 3으로 설정
+
             });
+
+            switch (newState)
+            {
+                case PlayerState.Cold :
+                    _gameManager.knight.Status.IsCold = true;
+                    break;
+                case PlayerState.Fracture:
+                    _gameManager.KnightMaxCost -= 1;
+                    break;
+                //case PlayerState.Drowsy:
+                //    _gameManager.knight.Status.IsCold = true;
+                //    break;
+            }
         }
 
         UIManager.Instance.UpdateStateUI();
@@ -63,6 +76,19 @@ public class PlayerStateController : MonoBehaviour
         if (stateInfoToRemove != null)
         {
             states.Remove(stateInfoToRemove);
+        }
+
+        switch (stateToRemove)
+        {
+            case PlayerState.Cold:
+                _gameManager.knight.Status.IsCold = false;
+                break;
+            case PlayerState.Fracture:
+                _gameManager.KnightMaxCost += 1;
+                break;
+            //case PlayerState.Drowsy:
+            //    _gameManager.knight.Status.IsCold = false;
+            //    break;
         }
         UIManager.Instance.UpdateStateUI();
     }
@@ -78,8 +104,6 @@ public class PlayerStateController : MonoBehaviour
                 return "골절";
             case PlayerState.Drowsy:
                 return "졸림";
-            case PlayerState.Flu:
-                return "독감";
             default:
                 return "알 수 없음";
         }
@@ -91,27 +115,25 @@ public class PlayerStateController : MonoBehaviour
         switch (state)
         {
             case PlayerState.Cold:
-                return "추위로 인해 감기에 걸렸습니다.";
+                return "감기에 걸려 몸이 허약해집니다. 파워가 1 낮아집니다.";
             case PlayerState.Fracture:
-                return "골절된 부상이 있습니다.";
+                return "다리가 부러졌습니다. 기사의 최대 행동력이 1 낮아집니다.";
             case PlayerState.Drowsy:
                 return "피로로 인해 졸립니다.";
-            case PlayerState.Flu:
-                return "독감 증상이 있습니다.";
             default:
                 return "알 수 없는 상태입니다.";
         }
     }
 
     // 게임 매니저에서 호출하여 상태의 count를 감소시키는 함수
-    public void DecreaseStateCount()
+    public void DecreaseStateCount(int amount)
     {
         // states 컬렉션의 복사본을 만듭니다.
         List<StateInfo> stateCopy = new List<StateInfo>(states);
 
         foreach (StateInfo stateInfo in stateCopy)
         {
-            stateInfo.count--;
+            stateInfo.count -= amount;
 
             // 카운트가 0이 되면 상태를 제거
             if (stateInfo.count <= 0)

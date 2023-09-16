@@ -21,6 +21,10 @@ public class ItemEvent : MonoBehaviour
                 _gameManager.knight.Status.Power += info.EffectAmount;
 
             break;
+            case EventType.Hunger:
+                _gameManager.GetHunger(-info.EffectAmount);
+
+            break;
 
         }
         _uiImgTxt.Init(info.Sprite, End, info.Text);

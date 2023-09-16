@@ -95,7 +95,7 @@ public class ResourceManager : MonoBehaviour
     void InitItemEvent()
     {
         Items = new();
-        Items.Add(new(EventType.HP, 3, GetSrc("ItemEvent", "fruit"), "열매를 주웠다.\n\n체력이 3 회복됩니다.!"));
+        Items.Add(new(EventType.Hunger, 10, GetSrc("ItemEvent", "fruit"), "고기를 주었다! \n\n 허기가 10 회복합니다..!"));
     }
 
     Sprite GetSrc(string folder, string name)
@@ -205,5 +205,6 @@ public enum EventType
     Power,
     Dex,
     Exp,
+    Hunger
 
 }

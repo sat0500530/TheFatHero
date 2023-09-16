@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private Player player;
     private PlayerStateController stateController;
 
+    public bool isFull;
+    public bool isEmpty;
+
     
     public bool HasKey { get; set; }
     public bool GameEnd = false;
@@ -189,9 +192,12 @@ public class GameManager : MonoBehaviour
             whoseTurn = nameof(knight);
             MapManager.BuildAllField();
             yield return StartCoroutine(PlayPlayer(knight));
-            _playerStateController.DecreaseStateCount();
-            CalculatePlayerState();
-            GetHunger(10);
+            _playerStateController.DecreaseStateCount(1);
+            if (isEmpty)
+            {
+                CalculatePlayerState();
+            }
+            GetHunger(5);
             if (DotDamageTime)
             {
                 // [TODO] 도트 데미지 액션 출력
@@ -231,8 +237,31 @@ public class GameManager : MonoBehaviour
 
     public void GetHunger(int amount)
     {
-        knight.Status.Hunger += amount;
+        knight.Status.Hunger -= amount;
+        CheckHungerState();
         _uiManager.UpdateKnightStatusInfo();
+    }
+
+    public void CheckHungerState()
+    {
+        if (knight.Status.Hunger >= 75)
+        {
+            knight.Status.IsFull = true;
+            isFull = true;
+            isEmpty = false;
+        }
+        else if (knight.Status.Hunger <= 25)
+        {
+            knight.Status.IsFull = false;
+            isFull = false;
+            isEmpty = true;
+        }
+        else
+        {
+            knight.Status.IsFull = false;
+            isFull = false;
+            isEmpty = false;
+        }
     }
 
     public int GetDotDam()
@@ -248,7 +277,22 @@ public class GameManager : MonoBehaviour
         do
         {
             if(player == knight)
-                player.StartTurn(KnightMaxCost);
+            {
+                if (isFull)
+                {
+                    player.StartTurn(KnightMaxCost - 1);
+                }
+                else if (isEmpty)
+                {
+                    player.StartTurn(KnightMaxCost + 1);
+                }
+                else
+                {
+                    player.StartTurn(KnightMaxCost);
+
+                }
+            }
+
             else
                 player.StartTurn(PrincessMaxCost);
             
@@ -788,7 +832,7 @@ public class GameManager : MonoBehaviour
         float hungerValue = status.Hunger;
 
         // Calculate the probability of each state change based on hunger and temperature
-        float stateChangeProbability = hungerValue / 100;
+        float stateChangeProbability = (100 - hungerValue) / 100;
 
         // Randomly assign states
         float randomValue = UnityEngine.Random.value;

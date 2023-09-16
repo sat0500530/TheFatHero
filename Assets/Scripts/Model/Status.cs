@@ -10,10 +10,21 @@ public class Status
     private int power;
     private int dex;
     private int exp = 0;
-    private int hunger = 0;
+    private int hunger = 50;
 
     private bool _buff;
     private bool _isCold;
+    private bool _isFull;
+
+    public bool IsFull
+    {
+        get => _isFull;
+        set
+        {
+            _isFull = value;
+            if (player) UIManager.Instance.UpdateKnightStatusInfo();
+        }
+    }
 
     public int Hunger
     {
@@ -81,7 +92,7 @@ public class Status
     {
         get
         {
-            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0);
+            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0) + (IsFull ? 1 : 0);
         }
         set
         {

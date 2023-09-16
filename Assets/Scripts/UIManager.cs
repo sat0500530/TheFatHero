@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI statusPoint;
     public RectTransform expBar;
     public RectTransform hungryBar;
+    public Image hungryBarImage;
 
     public GameObject doorKey;
     public TextMeshProUGUI skillInfoText;
@@ -227,12 +228,37 @@ public class UIManager : MonoBehaviour
 
         int calculWidth2 = 290 * status.Hunger / 100;
         hungryBar.sizeDelta = new Vector2(calculWidth2, hungryBar.sizeDelta.y);
-        
-        
+
+        if (status.Hunger >= 75)
+        {
+            hungryBarImage.color = Color.blue;
+        }
+        else if (status.Hunger <= 25)
+        {
+            hungryBarImage.color = Color.red;
+        }
+        else
+        {
+            hungryBarImage.color = Color.green;
+        }
+
+
         // 스텟
         hpText.text = $"<color=#D1180B>체력</color>  {status.CurrentHp}/{status.MaxHp}";
-        powerText.text = $"<color=#FFD400>파워</color>  {(status.IsCold ? $"<color=#D1180B>{status.Power}</color>" : $"{status.Power}")} {(status.Buff ? $"(버프)" : "")}";
-        dexText.text = $"<color=#80FF00>민첩</color>  {status.Dex}";
+        if (status.IsCold && !status.IsFull)
+        {
+            powerText.text = $"<color=#FFD400>파워</color>  <color=#D1180B>{status.Power}</color> {(status.Buff ? $"(버프)" : "")}";
+        }
+        else if (!status.IsCold && status.IsFull)
+        {
+            powerText.text = $"<color=#FFD400>파워</color>  <color=#429A38>{status.Power}</color> {(status.Buff ? $"(버프)" : "")}";
+        }
+        else
+        {
+            powerText.text = $"<color=#FFD400>파워</color>  {status.Power} {(status.Buff ? $"(버프)" : "")}";
+        }
+        
+        dexText.text = $"<color=#429A38>민첩</color>  {status.Dex}";
 
 
         statusPoint.text = $"스탯 포인트 <color=#8A2BE2>{_gameManager.StatusPoint}</color>";
