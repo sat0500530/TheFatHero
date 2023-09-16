@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
     private Dictionary<int, string> _knightSkillInfoDict = new()
     {
         {0, "한 칸 이동합니다.(행동력 1 소모) 공주가 밝힌 곳은, 행동력이 소모되지 않습니다." },
-        {1, "남은 행동력을 소모하여, 소모한 행동력 만큼 회복합니다. (행동력 x N 소모)" },
+        {1, "남은 행동력을 소모하여, N 의 HP와 N x 2 의 배고픔지수를 회복합니다. (행동력 x N 소모)" },
     };
 
     private void Awake()
@@ -299,7 +299,7 @@ public class UIManager : MonoBehaviour
                 status.Power++;
                 break;
             case "dex" :
-                status.Dex+=3;
+                status.Dex+=5;
                 break;
         }
 

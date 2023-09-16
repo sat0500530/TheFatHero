@@ -103,11 +103,11 @@ public class Status
     {
         get
         {
-            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0) + (IsFull ? 1 : 0);
+            return power ;
         }
         set
         {
-            power = Mathf.Max(value, 0);
+            power = Mathf.Max(value + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0) + (IsFull ? 2 : 0), 1);
             if (player) UIManager.Instance.UpdateKnightStatusInfo();
         }
     }

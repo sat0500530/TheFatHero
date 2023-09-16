@@ -115,7 +115,7 @@ public class PlayerStateController : MonoBehaviour
         switch (state)
         {
             case PlayerState.Cold:
-                return "감기에 걸려 몸이 허약해집니다. 기사의 파워가 1 낮아집니다. (1보다 낮아지진 않습니다.)";
+                return "감기에 걸려 몸이 허약해집니다. 기사의 파워가 1 낮아집니다.";
             case PlayerState.Fracture:
                 return "다리가 부러졌습니다. 기사의 최대 행동력이 1 낮아집니다.";
             case PlayerState.Drowsy:
