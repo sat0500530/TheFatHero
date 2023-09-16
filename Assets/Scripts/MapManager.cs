@@ -122,19 +122,32 @@ public class MapManager : MonoBehaviour
                 MapData[i, j].Init(floor, new Vector2Int(i, j), currentTileMap.GetTile(new Vector3Int(i+1, j+1, 0)) != null ? MapType.Block : MapType.Empty);
             }
         }
+
+        int halfWidth = _fieldSizeList[currentFloor].x / 2;
+
+        int halfHeight = _fieldSizeList[currentFloor].y / 2;
         MapData[_fieldSizeList[floor].x-1, _fieldSizeList[floor].y-1].SetMapType(MapType.Door);
         DoorTempLight.Add(MapData[_fieldSizeList[floor].x-1, _fieldSizeList[floor].y-1]);
-        while(floor != 2){
-            int i = (int)(Random.value * _fieldSizeList[currentFloor].x);
-            int j = (int)(Random.value * _fieldSizeList[currentFloor].y);
-            if(MapData[i, j].MapType == MapType.Empty){
+        while (floor != 2)
+        {
+            int i, j;
+
+            // 좌하단 공간에서 몬스터 생성을 피하기 위한 루프
+            do
+            {
+                i = (int)(Random.value * _fieldSizeList[currentFloor].x);
+                j = (int)(Random.value * _fieldSizeList[currentFloor].y);
+            } while (i >= 0 && i <= halfWidth - 1 && j >= 0 && j <= halfHeight - 1);
+
+            if (MapData[i, j].MapType == MapType.Empty)
+            {
                 MapData[i, j].SetMapType(MapType.Boss);
-                if(floor == 0) MapData[i, j].monsterInfo = gameManager._resourceManager.Ruggle;
-                else if(floor == 1) MapData[i, j].monsterInfo = gameManager._resourceManager.DeathKnight;
+                if (floor == 0) MapData[i, j].monsterInfo = gameManager._resourceManager.Ruggle;
+                else if (floor == 1) MapData[i, j].monsterInfo = gameManager._resourceManager.DeathKnight;
                 break;
             }
         }
-        if(floor == 2){ 
+        if (floor == 2){ 
             MapData[13,13].SetMapType(MapType.Princess);
             MapData[13,12].SetMapType(MapType.Dragon);
             MapData[13,12].monsterInfo = gameManager._resourceManager.Dragon;
@@ -152,8 +165,7 @@ public class MapManager : MonoBehaviour
         }
         float monsterRatio = (float)floorMonsterNum / (float)(_fieldSizeList[floor].x*_fieldSizeList[floor].y);
 
-        int halfWidth = _fieldSizeList[currentFloor].x / 2;
-        int halfHeight = _fieldSizeList[currentFloor].y / 2;
+
 
         int monsterLevelMin = 1;
         int monsterLevelMax = 2;
@@ -340,7 +352,13 @@ public class MapManager : MonoBehaviour
                         if (isInGrid(new Vector2Int(grid.x+1, grid.y))) list.Add(AllFieldMapData[currentFloor][grid.x + 1, grid.y]);
                         if (isInGrid(new Vector2Int(grid.x, grid.y+1))) list.Add(AllFieldMapData[currentFloor][grid.x, grid.y + 1]);
                         if (isInGrid(new Vector2Int(grid.x+1, grid.y+1))) list.Add(AllFieldMapData[currentFloor][grid.x + 1, grid.y + 1]);
-                        
+                        if (isInGrid(new Vector2Int(grid.x + 1, grid.y - 1))) list.Add(AllFieldMapData[currentFloor][grid.x + 1, grid.y - 1]);
+                        if (isInGrid(new Vector2Int(grid.x, grid.y - 1))) list.Add(AllFieldMapData[currentFloor][grid.x, grid.y - 1]);
+                        if (isInGrid(new Vector2Int(grid.x - 1, grid.y - 1))) list.Add(AllFieldMapData[currentFloor][grid.x - 1, grid.y - 1]);
+                        if (isInGrid(new Vector2Int(grid.x - 1, grid.y + 1))) list.Add(AllFieldMapData[currentFloor][grid.x - 1, grid.y + 1]);
+                        if (isInGrid(new Vector2Int(grid.x - 1, grid.y))) list.Add(AllFieldMapData[currentFloor][grid.x - 1, grid.y]);
+
+
                         showCanSelectField(list); // 스킬 사용 시, 밝혀질 범위를 표시
                     }
                 }
@@ -372,6 +390,11 @@ public class MapManager : MonoBehaviour
         if(isInGrid(new Vector2Int(position.x, position.y+1)))AllFieldMapData[currentFloor][position.x, position.y+1].IsLight = true;
         if(isInGrid(new Vector2Int(position.x+1, position.y)))AllFieldMapData[currentFloor][position.x+1, position.y].IsLight = true;
         if(isInGrid(new Vector2Int(position.x+1, position.y+1)))AllFieldMapData[currentFloor][position.x+1, position.y+1].IsLight = true;
+        if(isInGrid(new Vector2Int(position.x, position.y-1))) AllFieldMapData[currentFloor][position.x, position.y - 1].IsLight = true;
+        if (isInGrid(new Vector2Int(position.x + 1, position.y - 1))) AllFieldMapData[currentFloor][position.x + 1, position.y - 1].IsLight = true;
+        if (isInGrid(new Vector2Int(position.x - 1, position.y - 1))) AllFieldMapData[currentFloor][position.x - 1, position.y - 1].IsLight = true;
+        if (isInGrid(new Vector2Int(position.x - 1, position.y))) AllFieldMapData[currentFloor][position.x - 1, position.y].IsLight = true;
+        if (isInGrid(new Vector2Int(position.x - 1, position.y + 1))) AllFieldMapData[currentFloor][position.x - 1, position.y + 1].IsLight = true;
     }
     public void LightTempKnightMove(Vector2Int position){
         KnightTempLight.Clear();
