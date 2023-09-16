@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     public RectTransform expBar;
     public RectTransform hungryBar;
     public Image hungryBarImage;
+    public TextMeshProUGUI hungerText;
 
     public GameObject doorKey;
     public TextMeshProUGUI skillInfoText;
@@ -231,14 +232,17 @@ public class UIManager : MonoBehaviour
 
         if (status.Hunger >= 75)
         {
+            hungerText.text = $"허기  <color=#001EFF>{status.Hunger}</color>";
             hungryBarImage.color = Color.blue;
         }
         else if (status.Hunger <= 25)
         {
+            hungerText.text = $"허기  <color=#D1180B>{status.Hunger}</color>";
             hungryBarImage.color = Color.red;
         }
         else
         {
+            hungerText.text = $"허기  <color=#429A38>{status.Hunger}</color>";
             hungryBarImage.color = Color.green;
         }
 
@@ -247,15 +251,15 @@ public class UIManager : MonoBehaviour
         hpText.text = $"<color=#D1180B>체력</color>  {status.CurrentHp}/{status.MaxHp}";
         if (status.IsCold && !status.IsFull)
         {
-            powerText.text = $"<color=#FFD400>파워</color>  <color=#D1180B>{status.Power}</color> {(status.Buff ? $"(버프)" : "")}";
+            powerText.text = $"<color=#001EFF>파워</color>  <color=#D1180B>{status.Power}</color> {(status.Buff ? $"(버프)" : "")}";
         }
         else if (!status.IsCold && status.IsFull)
         {
-            powerText.text = $"<color=#FFD400>파워</color>  <color=#429A38>{status.Power}</color> {(status.Buff ? $"(버프)" : "")}";
+            powerText.text = $"<color=#001EFF>파워</color>  <color=#429A38>{status.Power}</color> {(status.Buff ? $"(버프)" : "")}";
         }
         else
         {
-            powerText.text = $"<color=#FFD400>파워</color>  {status.Power} {(status.Buff ? $"(버프)" : "")}";
+            powerText.text = $"<color=#001EFF>파워</color>  {status.Power} {(status.Buff ? $"(버프)" : "")}";
         }
         
         dexText.text = $"<color=#429A38>민첩</color>  {status.Dex}";
@@ -405,8 +409,8 @@ public class UIManager : MonoBehaviour
             tileInfPanel.SetActive(true);
             itemInf.SetActive(true);
 
-            tileName.text = "아이템";
-            itemText.text = "좋은일이 일어날 것 같은 아이템 입니다.";
+            tileName.text = "고기";
+            itemText.text = "맛있어 보이는 고기입니다.";
         }
 
         else if (mapType == MapType.Event)

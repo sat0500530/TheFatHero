@@ -95,7 +95,7 @@ public class ResourceManager : MonoBehaviour
     void InitItemEvent()
     {
         Items = new();
-        Items.Add(new(EventType.Hunger, 10, GetSrc("ItemEvent", "fruit"), "고기를 주었다! \n\n 허기가 10 회복합니다..!"));
+        Items.Add(new(EventType.Hunger, 20, GetSrc("ItemEvent", "fruit"), "고기를 주웠다! \n\n허기가 일부 회복됩니다..!"));
     }
 
     Sprite GetSrc(string folder, string name)

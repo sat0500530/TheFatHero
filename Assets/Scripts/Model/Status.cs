@@ -10,7 +10,7 @@ public class Status
     private int power;
     private int dex;
     private int exp = 0;
-    private int hunger = 50;
+    private int hunger = 80;
 
     private bool _buff;
     private bool _isCold;
