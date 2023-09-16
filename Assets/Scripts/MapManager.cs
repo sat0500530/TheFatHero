@@ -86,10 +86,10 @@ public class MapManager : MonoBehaviour
                 AllFieldMapData.Add(i, CreateMap(i, _fieldSizeList[i]));
             fieldFloorOffset[i] = new Vector3((20 -_fieldSizeList[i].x)/2, (20 -_fieldSizeList[i].x)/2, 0);
         }        
-        PrincessTempLight.Add(AllFieldMapData[2][19,19]);
-        PrincessTempLight.Add(AllFieldMapData[2][19,18]);
-        PrincessTempLight.Add(AllFieldMapData[2][18,19]);
-        PrincessTempLight.Add(AllFieldMapData[2][18,18]);
+        PrincessTempLight.Add(AllFieldMapData[2][13,13]);
+        PrincessTempLight.Add(AllFieldMapData[2][13,12]);
+        PrincessTempLight.Add(AllFieldMapData[2][12,13]);
+        PrincessTempLight.Add(AllFieldMapData[2][12,12]);
         currentFloor = 0;
     }
     
@@ -135,11 +135,11 @@ public class MapManager : MonoBehaviour
             }
         }
         if(floor == 2){ 
-            MapData[19,19].SetMapType(MapType.Princess);
-            MapData[19,18].SetMapType(MapType.Dragon);
-            MapData[19,18].monsterInfo = gameManager._resourceManager.Dragon;
-            MapData[18,19].SetMapType(MapType.Block);
-            MapData[18,18].SetMapType(MapType.Block);
+            MapData[13,13].SetMapType(MapType.Princess);
+            MapData[13,12].SetMapType(MapType.Dragon);
+            MapData[13,12].monsterInfo = gameManager._resourceManager.Dragon;
+            MapData[12,13].SetMapType(MapType.Block);
+            MapData[12,12].SetMapType(MapType.Block);
         }
         int floorMonsterNum = 0;
         // create monster
@@ -151,31 +151,115 @@ public class MapManager : MonoBehaviour
             }
         }
         float monsterRatio = (float)floorMonsterNum / (float)(_fieldSizeList[floor].x*_fieldSizeList[floor].y);
-        while(floorMonsterNum != 0){
+
+        int halfWidth = _fieldSizeList[currentFloor].x / 2;
+        int halfHeight = _fieldSizeList[currentFloor].y / 2;
+
+        int monsterLevelMin = 1;
+        int monsterLevelMax = 2;
+
+        while (floorMonsterNum != 0){
             for (int i = 0; i < _fieldSizeList[currentFloor].x; i++)
             {
                 for (int j = 0; j < _fieldSizeList[currentFloor].y; j++)
                 {
-                    if((i == 0 && j == 0) || (i == _fieldSizeList[currentFloor].x -1 && j == _fieldSizeList[currentFloor].y -1)){
-                        continue;
+                    if (i >= 0 && i <= halfWidth - 1 && j >= 0 && j <= halfHeight-1)
+                    {
+                        if(floor == 0)
+                        {
+                            monsterLevelMin = 1;
+                            monsterLevelMax = 2;
+                        }
+                        if (floor == 1)
+                        {
+                            monsterLevelMin = 4;
+                            monsterLevelMax = 5;
+                        }
+                        if (floor == 2)
+                        {
+                            monsterLevelMin = 9;
+                            monsterLevelMax = 10;
+                        }
+                        // 좌하단 공간 설정
+
                     }
-                    if(MapData[i, j].MapType == MapType.Empty){
+                    else if (i >= halfWidth && i <= _fieldSizeList[currentFloor].x && j >= 0 && j <= halfHeight - 1)
+                    {
+                        if (floor == 0)
+                        {
+                            monsterLevelMin = 2;
+                            monsterLevelMax = 3;
+                        }
+                        if (floor == 1)
+                        {
+                            monsterLevelMin = 5;
+                            monsterLevelMax = 7;
+                        }
+                        if (floor == 2)
+                        {
+                            monsterLevelMin = 11;
+                            monsterLevelMax = 13;
+                        }
+                        // 우하단 공간 설정
+
+                    }
+                    else if (i >= 0 && i <= halfWidth - 1 && j >= halfHeight && j <= _fieldSizeList[currentFloor].x)
+                    {
+                        if (floor == 0)
+                        {
+                            monsterLevelMin = 2;
+                            monsterLevelMax = 3;
+                        }
+                        if (floor == 1)
+                        {
+                            monsterLevelMin = 5;
+                            monsterLevelMax = 7;
+                        }
+                        if (floor == 2)
+                        {
+                            monsterLevelMin = 11;
+                            monsterLevelMax = 13;
+                        }
+                        // 좌상단 공간 설정
+
+                    }
+                    else
+                    {
+                        if (floor == 0)
+                        {
+                            monsterLevelMin = 3;
+                            monsterLevelMax = 4;
+                        }
+                        if (floor == 1)
+                        {
+                            monsterLevelMin = 8;
+                            monsterLevelMax = 9;
+                        }
+                        if (floor == 2)
+                        {
+                            monsterLevelMin = 14;
+                            monsterLevelMax = 15;
+                        }
+                        // 우상단 공간 설정
+                    }
+
+                    if (MapData[i, j].MapType == MapType.Empty)
+                    {
                         float val = Random.value;
-                        if(val < monsterRatio){
-                            MapData[i,j].SetMapType(MapType.Monster);
-                            int selectMonsterLevelIdx = Random.Range(0, floorRemainMonsterNum.Count);
-                            while(floorRemainMonsterNum[selectMonsterLevelIdx].z == 0 && floorMonsterNum != 0){
-                                selectMonsterLevelIdx = (selectMonsterLevelIdx + 1) % floorRemainMonsterNum.Count;
-                            }
-                            MapData[i,j].monsterInfo = gameManager._resourceManager.GetRandomMonster(floorRemainMonsterNum[selectMonsterLevelIdx].y);
-                            floorRemainMonsterNum[selectMonsterLevelIdx] -= new Vector3Int(0,0,1);
+                        if (val < monsterRatio)
+                        {
+                            MapData[i, j].SetMapType(MapType.Monster);
+                            int selectMonsterLevelIdx = Random.Range(monsterLevelMin, monsterLevelMax + 1);
+                            MapData[i, j].monsterInfo = gameManager._resourceManager.GetRandomMonster(selectMonsterLevelIdx);
                             floorMonsterNum -= 1;
-                            if(floorMonsterNum == 0) break;
+                            if (floorMonsterNum == 0) break;
                         }
                     }
                 }
-                if(floorMonsterNum == 0) break;
+                if (floorMonsterNum == 0) break;
             }
+
+
         }
 
         GenerateFieldObjects(MapData, mapItemboxRatio, MapType.Item);

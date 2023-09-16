@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
+
     
     private int turnsBeforeAscend;
 
@@ -177,8 +178,8 @@ public class GameManager : MonoBehaviour
         MapManager.LightTempKnightMove(knight.CurrentFieldPiece.gridPosition);
         
         MapManager.ChangeFloor(princess.SelectedFloor);
-        princess.transform.position = MapManager.GridToWorldPosition(new Vector2(19,19));
-        princess.CurrentFieldPiece = MapManager.GetFieldPiece(princess.SelectedFloor, new Vector2Int(19,19));
+        princess.transform.position = MapManager.GridToWorldPosition(new Vector2(13,13));
+        princess.CurrentFieldPiece = MapManager.GetFieldPiece(princess.SelectedFloor, new Vector2Int(13,13));
         // MapManager.LightField(FieldType.Princess, new Vector2Int(19,19));
 
         MapManager.ChangeFloor(CurrentKnightFloor);
@@ -369,8 +370,9 @@ public class GameManager : MonoBehaviour
     private bool MoveKnight(FieldPiece field)
     {
         bool result = true;
-        int cost = field.IsLight ? 0 : _dataManager.knightSkillCost[knight.SelectedIdx]; 
-      
+        //int cost = field.IsLight ? 0 : _dataManager.knightSkillCost[knight.SelectedIdx]; 
+        int cost = _dataManager.knightSkillCost[knight.SelectedIdx];
+
         if (cost <= knight.Cost)
         {
             knight.Cost -= cost;
