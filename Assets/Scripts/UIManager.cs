@@ -296,10 +296,10 @@ public class UIManager : MonoBehaviour
                 status.CurrentHp+=2;        
                 break;
             case "power" :
-                status.Power++;
+                status.levelPow += 1;
                 break;
             case "dex" :
-                status.Dex+=5;
+                status.levelDex += 5;
                 break;
         }
 
@@ -406,8 +406,8 @@ public class UIManager : MonoBehaviour
             MonImg.sprite = monster.Sprite;
             tileName.text = "몬스터";
             monHP.text = "<color=#D1180B>체력</color> : " + monster.Status.MaxHp;
-            monPow.text = "<color=#FFD400>파워</color> : " + monster.Status.Power;
-            monDex.text = "<color=#80FF00>민첩</color> : " + monster.Status.Dex;
+            monPow.text = "<color=#001EFF>파워</color> : " + monster.Status.Power;
+            monDex.text = "<color=#429A38>민첩</color> : " + monster.Status.Dex;
             monExp.text = "<color=#8A2BE2>EXP</color>  + " + monster.Status.Exp;
             monName.text = monster.Name;
         }
@@ -453,8 +453,8 @@ public class UIManager : MonoBehaviour
             tileName.text = "보스 몬스터";
             key.enabled = true;
             monHP.text = "<color=#D1180B>체력</color> : " + monster.Status.MaxHp;
-            monPow.text = "<color=#FFD400>파워</color> : " + monster.Status.Power;
-            monDex.text = "<color=#80FF00>민첩</color> : " + monster.Status.Dex;
+            monPow.text = "<color=#001EFF>파워</color> : " + monster.Status.Power;
+            monDex.text = "<color=#429A38>민첩</color> : " + monster.Status.Dex;
             monExp.text = "<color=#8A2BE2>EXP</color>  + " + monster.Status.Exp;
             monName.text = monster.Name;
         }
@@ -470,7 +470,7 @@ public class UIManager : MonoBehaviour
             tileName.text = "드래곤";
             monHP.text = "<color=#D1180B>체력</color> : " + monster.Status.MaxHp;
             monPow.text = "<color=#FFD400>파워</color> : " + monster.Status.Power;
-            monDex.text = "<color=#80FF00>민첩</color> : " + monster.Status.Dex;
+            monDex.text = "<color=#429A38>민첩</color> : " + monster.Status.Dex;
             monExp.text = "<color=#8A2BE2>EXP</color>  + " + monster.Status.Exp;
             monName.text = monster.Name;
         }

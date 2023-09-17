@@ -10,12 +10,16 @@ public class Status
     private int power;
     private int dex;
     private int exp = 0;
-    private int hunger = 90;
+    private int hunger = 50;
 
     private bool _buff;
     private bool _isCold;
     private bool _isFull;
     private bool _isDrowsy;
+
+    public int levelPow = 0;
+    public int levelDex = 0;
+
 
     public bool IsFull
     {
@@ -103,8 +107,7 @@ public class Status
     {
         get
         {
-            //return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0) + (IsFull ? 2 : 0);
-            return power + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0);
+            return Mathf.Max(power + levelPow + (IsFull ? 2 : 0) + (Buff ? 2 + DataManager.Instance.PrincessPowerSkillValue : 0) - (IsCold ? 1 : 0),1);
         }
         set
         {
@@ -116,7 +119,7 @@ public class Status
 
     public int Dex
     {
-        get { return dex / (IsDrowsy ? 2 : 1); }
+        get { return Mathf.Clamp((dex + levelDex) / (IsDrowsy ? 2 : 1), 0, 90); }
         set
         {
             dex = Mathf.Clamp(value, 0, 90);
