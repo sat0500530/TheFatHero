@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public ResourceManager _resourceManager;
     private DataManager _dataManager;
     private UIManager _uiManager;
-    private PlayerStateController _playerStateController;
+    public PlayerStateController _playerStateController;
     public CameraManager CameraManager { get; private set; }
     public MapManager MapManager    { get; private set; }
 
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour
     /// true가 반환 된 경우, 스킬 사용이 유효한 상태로 코스트 차감
     /// false가 반환된 경우, 스킬 사용이 실패한 경우로 코스트를 차감하지 않음
     /// </summary>
-    /// <param name="field"></param>
+    /// <param artifactName="field"></param>
     /// <returns></returns>
     public bool ClickMap(FieldPiece field)
     {
@@ -460,7 +460,6 @@ public class GameManager : MonoBehaviour
 
     private void Rest()
     {
-        bool result = true;
 
         if (knight.Cost >= 1)
         {
@@ -472,7 +471,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Log("휴식에 필요한 코스트가 충분하지 않습니다.");
-            result = false;
         }
 
         //return result;
@@ -499,7 +497,6 @@ public class GameManager : MonoBehaviour
 
     private void BuffKnight()
     {
-        bool result = true;
         var knight_ = knight;
 
         if (!knight_.Status.Buff)
@@ -514,13 +511,11 @@ public class GameManager : MonoBehaviour
             else
             {
                 Log("코스트가 부족하여 실행 할 수 없습니다.");
-                result = false;
             }
         }
         else
         {
             Log("버프는 한 번만 사용할 수 있습니다.");
-            result = false;
         }
         
         //return result;
@@ -535,7 +530,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 행동이 변경될 때, 행동 사용 가능 지역을 표시
     /// </summary>
-    /// <param name="index"></param>
+    /// <param artifactName="index"></param>
     public void ChangeBehavior(int index)
     {
         List<FieldPiece> changePiece = new();
@@ -633,10 +628,10 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// way X, way Y 조합에 해당하는 방향내 Field Piece 리스트를 반환
     /// </summary>
-    /// <param name="baseFields"></param>
-    /// <param name="CurPiece"></param>
-    /// <param name="wayX"></param>
-    /// <param name="wayY"></param>
+    /// <param artifactName="baseFields"></param>
+    /// <param artifactName="CurPiece"></param>
+    /// <param artifactName="wayX"></param>
+    /// <param artifactName="wayY"></param>
     /// <returns></returns>
     IEnumerable<FieldPiece> GetFieldKnightSkill1(FieldPiece[,] baseFields, FieldPiece CurPiece, int[] wayX, int[] wayY)
     {
@@ -668,7 +663,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 맵 이동 후 이벤트가 존재하면 수행 
     /// </summary>
-    /// <param name="field"></param>
+    /// <param artifactName="field"></param>
     private void ExecuteMapEvent(FieldPiece field)
     {
         EventPrinting = true;

@@ -9,7 +9,7 @@ public class UIState : MonoBehaviour
     StateInfo _stateInfo;
     GameObject _gameObject;
 
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI stateName;
     public TextMeshProUGUI description;
     public Text turnText;
 
@@ -32,7 +32,7 @@ public class UIState : MonoBehaviour
         {
             _gameObject.GetComponent<Image>().color = Color.red;
         }
-        name.text = stateInfo.stateName;
+        stateName.text = stateInfo.stateName;
         description.text = stateInfo.stateDescription;
         turnText.text = stateInfo.count.ToString() + "ео";
     }

@@ -559,7 +559,7 @@ public class MapManager : MonoBehaviour
         }
         else if(type == MapType.Event){
             // fieldPiece.fieldEventInfo = eventInfo;
-            fieldPiece.fieldEventInfo = gameManager._resourceManager.GetRandomFieldEvent();
+            fieldPiece.fieldEventInfo = gameManager._resourceManager.GetRandomFieldEvent(fieldPiece.currentFloor);
         }
     }
 

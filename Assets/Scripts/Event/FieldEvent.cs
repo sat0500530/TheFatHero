@@ -52,6 +52,14 @@ public class FieldEvent : MonoBehaviour
                 _gameManager.knight.Status.Exp += info.EffectAmount;
 
             break;
+            case EventType.Hunger:
+                _gameManager.GetHunger(-info.EffectAmount);
+
+            break;
+            case EventType.StateCount:
+                _gameManager._playerStateController.DecreaseStateCount(3);
+            break;
+
 
         }
 

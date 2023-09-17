@@ -10,7 +10,7 @@ public class UIArtifact : MonoBehaviour
     Artifact _baseArtifact;
     
     public Image image;
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI artifactName;
     public TextMeshProUGUI description;
 
 
@@ -19,7 +19,7 @@ public class UIArtifact : MonoBehaviour
         _gameManager = GameObject.Find(nameof(GameManager)).GetComponent<GameManager>();
         _baseArtifact = artifact;
         image.sprite = artifact.Sprite;
-        name.text = artifact.Name;
+        artifactName.text = artifact.Name;
         description.text = artifact.Description;
     }
 
