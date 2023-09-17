@@ -598,7 +598,7 @@ public class GameManager : MonoBehaviour
                     // 용사가 서 있는 위치 전달 
                     if (knight.Cost > 0)
                     {
-                        _uiManager.ActiveSomeThingBox($"휴식하시겠습니까?\n(체력+{knight.Cost*2 + _dataManager.KnightRestRecoveryHpAddValue}, 배부름 지수+{knight.Cost*2})", Rest);
+                        _uiManager.ActiveSomeThingBox($"휴식하시겠습니까?\n(체력+{knight.Cost*2 + _dataManager.KnightRestRecoveryHpAddValue}, 포만감 +{knight.Cost*2})", Rest);
                     }
                     else
                     {

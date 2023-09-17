@@ -57,8 +57,8 @@ public class ResourceManager : MonoBehaviour
         FieldEvents.Add(new(EventType.HP, -1, GetSrc("FieldEvent", "blood"), "서둘러 나아가다, 바닥에 고인 핏물에 미끄러집니다. \n\n체력이 1 줄어듭니다."));
         FieldEvents.Add(new(EventType.HP, -2, GetSrc("FieldEvent", "goblinevent"), "수풀을 헤치며 지나가고 있었습니다. 갑자기 주위에서 고블린 덮칩니다./힘겹게 급습을 막아냈으나, 너무나 지칩니다.\n\n체력이 2 줄어듭니다."));
         FieldEvents.Add(new(EventType.StateCount, 3, GetSrc("FieldEvent", "cross"), "저 멀리 십자가가 보입니다.\n기사는 다시금 마음을 굳힙니다./성스러워진 마음은 몸을 강하게 해줍니다. \n\n질병이 모두 없어집니다!"));
-        FieldEvents.Add(new(EventType.Hunger, -10, GetSrc("FieldEvent", "goblinfood"), "저기 고기를 먹는 고블린들이 보입니다.\n노릇노릇한 향기가 코 끝을 스칩니다./더 배가 고파집니다. \n\n배부름 지수가 10 줄어듭니다.."));
-        FieldEvents.Add(new(EventType.Hunger, 10, GetSrc("FieldEvent", "floorfood"), "앗 바닥에 고기가 놓여져있습니다.\n고민 따위 하지 않았습니다./입에 우겨넣었습니다. \n\n배부름 지수가 10 회복됩니다."));
+        FieldEvents.Add(new(EventType.Hunger, -10, GetSrc("FieldEvent", "goblinfood"), "저기 고기를 먹는 고블린들이 보입니다.\n노릇노릇한 향기가 코 끝을 스칩니다./더 배가 고파집니다. \n\n포만감이 10 줄어듭니다.."));
+        FieldEvents.Add(new(EventType.Hunger, 10, GetSrc("FieldEvent", "floorfood"), "앗 바닥에 고기가 놓여져있습니다.\n고민 따위 하지 않았습니다./입에 우겨넣었습니다. \n\n포만감이 10 회복됩니다."));
         FieldEvents.Add(new(EventType.Cold, 0 , GetSrc("FieldEvent", "getcold"), "성 안이 급격하게 추워집니다./몸이 으슬으슬 합니다. \n\n감기에 걸립니다."));
         FieldEvents.Add(new(EventType.HP, -3, GetSrc("FieldEvent", "arrow"), "'딸깍'\n불길한 예감이 듭니다./사방에서 화살이 날라옵니다. 빠르게 피했지만, 모두 피할 순 없었습니다. \n\n체력이 3 줄어듭니다."));
     }
@@ -93,7 +93,7 @@ public class ResourceManager : MonoBehaviour
     void InitItemEvent()
     {
         Items = new();
-        Items.Add(new(EventType.Hunger, 20, GetSrc("ItemEvent", "fruit"), "고기를 주웠다! \n\n배고픔 지수 20 회복됩니다..!"));
+        Items.Add(new(EventType.Hunger, 20, GetSrc("ItemEvent", "fruit"), "고기를 주웠다! \n\n포만감을 20 회복됩니다..!"));
     }
 
     Sprite GetSrc(string folder, string name)
