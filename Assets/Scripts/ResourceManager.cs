@@ -186,7 +186,6 @@ public class ResourceManager : MonoBehaviour
     public FieldEventInfo GetRandomFieldEvent(int floor)
     {
         int index;
-        Debug.Log(floor);
 
         if (floor == 0)
         {

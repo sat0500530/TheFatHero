@@ -408,7 +408,6 @@ public class GameManager : MonoBehaviour
                 }
 
                 // 이동
-                Debug.Log("move" +field.gridPosition );
                 knight.transform.position = MapManager.GridToWorldPosition(new Vector2(field.gridPosition.x,field.gridPosition.y));
                 knight.CurrentFieldPiece = field;
                 // 맵을 밝힘

@@ -197,8 +197,6 @@ public class UIManager : MonoBehaviour
     
     public void UpdateInfoText(int index)
     {
-        Debug.Log(_gameManager.whoseTurn);
-
         string text;
         if (_gameManager.whoseTurn.Equals(nameof(Princess).ToLower()))
         {
