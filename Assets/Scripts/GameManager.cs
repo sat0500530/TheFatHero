@@ -375,7 +375,7 @@ public class GameManager : MonoBehaviour
 
         if (cost <= knight.Cost)
         {
-            knight.Cost -= cost;
+            
             
             // [TODO] Door 접촉 로직 하단에 작성 후 제거
             // if ((field.gridPosition.x == 19 && field.gridPosition.y == 19) ||
@@ -391,7 +391,9 @@ public class GameManager : MonoBehaviour
                 Log("이동할 수 없는 지형입니다.");
             }
             else
-            {   
+            {
+                knight.Cost -= cost;
+
                 switch (field.MapType)
                 {
                     case MapType.Empty : break; // 이벤트가 없으면 종료
@@ -464,7 +466,7 @@ public class GameManager : MonoBehaviour
         if (knight.Cost >= 1)
         {
             knight.Status.CurrentHp += knight.Cost * 2 + _dataManager.KnightRestRecoveryHpAddValue;
-            knight.Status.Hunger += knight.Cost;
+            knight.Status.Hunger += knight.Cost * 2;
             knight.Cost = 0;
             UIManager.Instance.UpdateKnightStatusInfo();
         }
@@ -596,7 +598,7 @@ public class GameManager : MonoBehaviour
                     // 용사가 서 있는 위치 전달 
                     if (knight.Cost > 0)
                     {
-                        _uiManager.ActiveSomeThingBox($"휴식하시겠습니까?\n(체력+{knight.Cost*2 + _dataManager.KnightRestRecoveryHpAddValue}, 배부름 지수+{knight.Cost})", Rest);
+                        _uiManager.ActiveSomeThingBox($"휴식하시겠습니까?\n(체력+{knight.Cost*2 + _dataManager.KnightRestRecoveryHpAddValue}, 배부름 지수+{knight.Cost*2})", Rest);
                     }
                     else
                     {
@@ -792,11 +794,11 @@ public class GameManager : MonoBehaviour
             case ArtifactType.AllStatUp :
                 knight.Status.MaxHp     += _dataManager.ARTI_AllStatUp_Value;
                 knight.Status.CurrentHp += _dataManager.ARTI_AllStatUp_Value;
-                knight.Status.Dex       += _dataManager.ARTI_AllStatUp_Value;
-                knight.Status.Power     += _dataManager.ARTI_AllStatUp_Value;
+                knight.Status.levelDex     += _dataManager.ARTI_AllStatUp_Value;
+                knight.Status.levelPow     += _dataManager.ARTI_AllStatUp_Value;
                 break;
             case ArtifactType.DexUp :
-                knight.Status.Dex += _dataManager.ARTI_DEXUP_Value;
+                knight.Status.levelDex += _dataManager.ARTI_DEXUP_Value;
                 break;
             case ArtifactType.HpUp :
                 knight.Status.CurrentHp += _dataManager.ARTI_HPUP_Value;
