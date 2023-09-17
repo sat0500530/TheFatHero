@@ -17,9 +17,30 @@ public class Status
     private bool _isFull;
     private bool _isDrowsy;
 
-    public int levelPow = 0;
-    public int levelDex = 0;
+    private int _levelPow = 0;
+    private int _levelDex = 0;
 
+
+    public int levelPow
+    {
+        get => _levelPow;
+        set
+        {
+            _levelPow = value;
+            if (player) UIManager.Instance.UpdateKnightStatusInfo();
+        }
+
+    }
+    public int levelDex
+    {
+        get => _levelDex;
+        set
+        {
+            _levelDex = value;
+            if (player) UIManager.Instance.UpdateKnightStatusInfo();
+        }
+
+    }
 
     public bool IsFull
     {

@@ -41,11 +41,11 @@ public class FieldEvent : MonoBehaviour
                 _gameManager.knight.Status.CurrentHp += info.EffectAmount;
             break;
             case EventType.Power:
-                _gameManager.knight.Status.Power += info.EffectAmount;
+                _gameManager.knight.Status.levelPow += info.EffectAmount;
 
             break;
             case EventType.Dex:
-                _gameManager.knight.Status.Dex += info.EffectAmount;
+                _gameManager.knight.Status.levelDex += info.EffectAmount;
 
             break;
             case EventType.Exp:
@@ -62,7 +62,12 @@ public class FieldEvent : MonoBehaviour
             case EventType.Cold:
                 _gameManager._playerStateController.AddState(PlayerState.Cold, _gameManager._playerStateController.GetStateName(PlayerState.Cold), _gameManager._playerStateController.GetStateDescription(PlayerState.Cold));
             break;
+            case EventType.Cost:
+                Debug.Log(_gameManager.knight.Cost);
+                _gameManager.knight.Cost += info.EffectAmount;
+                Debug.Log(_gameManager.knight.Cost);
 
+            break;
 
         }
 
