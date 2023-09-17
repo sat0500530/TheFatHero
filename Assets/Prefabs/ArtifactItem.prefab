@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1830338222576214987}
-  name: {fileID: 1830338221845599173}
+  artifactName: {fileID: 1830338221845599173}
   description: {fileID: 1830338222262456033}
 --- !u!222 &1830338222115778089
 CanvasRenderer:

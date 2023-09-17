@@ -57,7 +57,10 @@ public class FieldEvent : MonoBehaviour
 
             break;
             case EventType.StateCount:
-                _gameManager._playerStateController.DecreaseStateCount(3);
+                _gameManager._playerStateController.DecreaseStateCount(info.EffectAmount);
+            break;
+            case EventType.Cold:
+                _gameManager._playerStateController.AddState(PlayerState.Cold, _gameManager._playerStateController.GetStateName(PlayerState.Cold), _gameManager._playerStateController.GetStateDescription(PlayerState.Cold));
             break;
 
 

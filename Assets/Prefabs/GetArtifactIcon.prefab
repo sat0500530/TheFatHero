@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 4179012443918594258}
-  name: {fileID: 4179012443786563707}
+  artifactName: {fileID: 4179012443786563707}
   description: {fileID: 4179012444011137107}
 --- !u!114 &4179012444820197020
 MonoBehaviour:

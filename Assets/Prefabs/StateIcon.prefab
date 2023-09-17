@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c983795d91c83469313f0b5ee82358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 4352133856949567547}
+  stateName: {fileID: 4352133856949567547}
   description: {fileID: 1667922480177981092}
   turnText: {fileID: 9133483545578662714}
 --- !u!114 &836171442036260407
