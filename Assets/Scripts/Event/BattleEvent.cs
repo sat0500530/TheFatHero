@@ -346,6 +346,8 @@ public class BattleEvent : MonoBehaviour
         {
             _knight.Status.Level++;
             _knight.Status.Exp -= expNeed;
+            //레벨업 시, 최대 체력으로 회복
+            //_knight.Status.CurrentHp = _knight.Status.MaxHp;
             
             yield return new WaitForSeconds(0.5f);
             AppendBattleInfoText($"\n용사의 레벨이 {_knight.Status.Level}로 올랐다!");

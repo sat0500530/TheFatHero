@@ -87,15 +87,15 @@ public class ResourceManager : MonoBehaviour
 
     void InitMonster()
     {
-        Ruggle = new Monster("러글", new(10, 3, 10, 5), GetSrc("Monster", "ruggle"));
-        DeathKnight = new Monster("데스나이트", new(15, 5, 15, 10), GetSrc("Monster", "deathknight"));
-        Dragon = new Monster("드래곤", new(20, 15, 20, 20), GetSrc("Monster", "dragon"));
+        Ruggle = new Monster("러글", new(10, 5, 10, 5), GetSrc("Monster", "ruggle"));
+        DeathKnight = new Monster("데스나이트", new(20, 7, 15, 10), GetSrc("Monster", "deathknight"));
+        Dragon = new Monster("드래곤", new(40, 10, 20, 30), GetSrc("Monster", "dragon"));
     }
 
     void InitItemEvent()
     {
         Items = new();
-        Items.Add(new(EventType.Hunger, 20, GetSrc("ItemEvent", "fruit"), "고기를 주웠다! \n\n포만감을 20 회복됩니다..!"));
+        Items.Add(new(EventType.Hunger, 15, GetSrc("ItemEvent", "fruit"), "고기를 주웠다! \n\n포만감을 15 회복됩니다..!"));
     }
 
     Sprite GetSrc(string folder, string name)
@@ -128,54 +128,54 @@ public class ResourceManager : MonoBehaviour
             1 => new Monster("Lv.2 <color=#FF0000>고블린</color>", new(3, 2, 3, 2), GetSrc("Monster", "goblin")),
             2 => new Monster("Lv.2 <color=#FF0000>슬라임</color>", new(4, 1, 3, 2), GetSrc("Monster", "slime")),
             //******************************************↑Level2↑******************************************
-            3 => new Monster("Lv.3 <color=#FF0000>고블린</color>", new(3, 2, 5, 3), GetSrc("Monster", "goblin")),
-            4 => new Monster("Lv.3 <color=#FF0000>슬라임</color>", new(5, 2, 5, 3), GetSrc("Monster", "slime")),
+            3 => new Monster("Lv.3 <color=#FF0000>고블린</color>", new(4, 2, 5, 3), GetSrc("Monster", "goblin")),
+            4 => new Monster("Lv.3 <color=#FF0000>슬라임</color>", new(5, 1, 5, 3), GetSrc("Monster", "slime")),
             //******************************************↑Level3↑******************************************
-            5 => new Monster("Lv.4 <color=#FF0000>고블린</color>", new(4, 2, 11, 4), GetSrc("Monster", "goblin")),
-            6 => new Monster("Lv.4 <color=#FF0000>슬라임</color>", new(5, 2, 11, 4), GetSrc("Monster", "slime")),
+            5 => new Monster("Lv.4 <color=#FF0000>고블린</color>", new(4, 3, 14, 4), GetSrc("Monster", "goblin")),
+            6 => new Monster("Lv.4 <color=#FF0000>슬라임</color>", new(5, 2, 14, 4), GetSrc("Monster", "slime")),
             7 => new Monster("Lv.4 <color=#FF0000>오크</color>", new(5, 4, 0, 4), GetSrc("Monster", "orc")),
             //******************************************↑Level4↑******************************************
-            8 => new Monster("Lv.5 <color=#FF0000>고블린</color>", new(7, 3, 11, 5), GetSrc("Monster", "goblin")),
+            8 => new Monster("Lv.5 <color=#FF0000>고블린</color>", new(7, 3, 14, 5), GetSrc("Monster", "goblin")),
             9 => new Monster("Lv.5 <color=#FF0000>오크</color>", new(8, 4, 0, 5), GetSrc("Monster", "orc")),
             //******************************************↑Level5↑******************************************
-            10 => new Monster("Lv.6 <color=#FF0000>고블린</color>", new(9, 4, 11, 6), GetSrc("Monster", "goblin")),
-            11 => new Monster("Lv.6 <color=#FF0000>오크</color>", new(10, 5, 0, 6), GetSrc("Monster", "orc")),
-            12 => new Monster("Lv.6 <color=#FF0000>스텀프</color>", new(10, 4, 15, 6), GetSrc("Monster", "stump")),
+            10 => new Monster("Lv.6 <color=#FF0000>고블린</color>", new(9, 3, 14, 6), GetSrc("Monster", "goblin")),
+            11 => new Monster("Lv.6 <color=#FF0000>오크</color>", new(10, 4, 0, 6), GetSrc("Monster", "orc")),
+            12 => new Monster("Lv.6 <color=#FF0000>스텀프</color>", new(10, 3, 14, 6), GetSrc("Monster", "stump")),
             //******************************************↑Level6↑******************************************
-            13 => new Monster("Lv.7 <color=#FF0000>고블린</color>", new(10, 4, 11, 7), GetSrc("Monster", "goblin")),
-            14 => new Monster("Lv.7 <color=#FF0000>오크</color>", new(11, 6, 0, 7), GetSrc("Monster", "orc")),
-            15 => new Monster("Lv.7 <color=#FF0000>스텀프</color>", new(11, 4, 15, 7), GetSrc("Monster", "stump")),
+            13 => new Monster("Lv.7 <color=#FF0000>고블린</color>", new(10, 3, 14, 7), GetSrc("Monster", "goblin")),
+            14 => new Monster("Lv.7 <color=#FF0000>오크</color>", new(11, 4, 0, 7), GetSrc("Monster", "orc")),
+            15 => new Monster("Lv.7 <color=#FF0000>스텀프</color>", new(11, 3, 19, 7), GetSrc("Monster", "stump")),
             //******************************************↑Level7↑******************************************
-            16 => new Monster("Lv.8 <color=#FF0000>고블린</color>", new(11, 4, 11, 8), GetSrc("Monster", "goblin")),
-            17 => new Monster("Lv.8 <color=#FF0000>오크</color>", new(11, 6, 0, 8), GetSrc("Monster", "orc")),
-            18 => new Monster("Lv.8 <color=#FF0000>스텀프</color>", new(12, 4, 15, 8), GetSrc("Monster", "stump")),
-            19 => new Monster("Lv.8 <color=#FF0000>드레이크</color>", new(13, 5, 15, 8), GetSrc("Monster", "drake")),
+            16 => new Monster("Lv.8 <color=#FF0000>고블린</color>", new(11, 3, 14, 8), GetSrc("Monster", "goblin")),
+            17 => new Monster("Lv.8 <color=#FF0000>오크</color>", new(11, 4, 0, 8), GetSrc("Monster", "orc")),
+            18 => new Monster("Lv.8 <color=#FF0000>스텀프</color>", new(12, 3, 19, 8), GetSrc("Monster", "stump")),
+            19 => new Monster("Lv.8 <color=#FF0000>드레이크</color>", new(13, 3, 19, 8), GetSrc("Monster", "drake")),
             //******************************************↑Level8↑******************************************
-            20 => new Monster("Lv.9 <color=#FF0000>오크</color>", new(13, 6, 0, 9), GetSrc("Monster", "orc")),
-            21 => new Monster("Lv.9 <color=#FF0000>스텀프</color>", new(13, 5, 15, 9), GetSrc("Monster", "stump")),
-            22 => new Monster("Lv.9 <color=#FF0000>드레이크</color>", new(13, 5, 15, 9), GetSrc("Monster", "drake")),
+            20 => new Monster("Lv.9 <color=#FF0000>오크</color>", new(13, 4, 0, 9), GetSrc("Monster", "orc")),
+            21 => new Monster("Lv.9 <color=#FF0000>스텀프</color>", new(13, 3, 19, 9), GetSrc("Monster", "stump")),
+            22 => new Monster("Lv.9 <color=#FF0000>드레이크</color>", new(13, 3, 19, 9), GetSrc("Monster", "drake")),
             //******************************************↑Level9↑******************************************
-            23 => new Monster("Lv.10 <color=#FF0000>스텀프</color>", new(14, 7, 17, 10), GetSrc("Monster", "stump")),
-            24 => new Monster("Lv.10 <color=#FF0000>드레이크</color>", new(14, 7, 17, 10), GetSrc("Monster", "drake")),
+            23 => new Monster("Lv.10 <color=#FF0000>스텀프</color>", new(14, 4, 19, 10), GetSrc("Monster", "stump")),
+            24 => new Monster("Lv.10 <color=#FF0000>드레이크</color>", new(14, 4, 19, 10), GetSrc("Monster", "drake")),
             //******************************************↑Level10↑******************************************
-            25 => new Monster("Lv.11 <color=#FF0000>스텀프</color>", new(18, 7, 19, 11), GetSrc("Monster", "stump")),
-            26 => new Monster("Lv.11 <color=#FF0000>드레이크</color>", new(18, 8, 19, 11), GetSrc("Monster", "drake")),
-            27 => new Monster("Lv.11 <color=#FF0000>토글</color>", new(5, 7, 50, 11), GetSrc("Monster", "togle")),
+            25 => new Monster("Lv.11 <color=#FF0000>스텀프</color>", new(18, 4, 19, 11), GetSrc("Monster", "stump")),
+            26 => new Monster("Lv.11 <color=#FF0000>드레이크</color>", new(18, 4, 19, 11), GetSrc("Monster", "drake")),
+            27 => new Monster("Lv.11 <color=#FF0000>토글</color>", new(1, 2, 50, 11), GetSrc("Monster", "togle")),
             //******************************************↑Level11↑******************************************
-            28 => new Monster("Lv.12 <color=#FF0000>스텀프</color>", new(19, 7, 21, 12), GetSrc("Monster", "stump")),
-            29 => new Monster("Lv.12 <color=#FF0000>드레이크</color>", new(18, 7, 21, 12), GetSrc("Monster", "drake")),
-            30 => new Monster("Lv.12 <color=#FF0000>토글</color>", new(6, 4, 50, 12), GetSrc("Monster", "togle")),
+            28 => new Monster("Lv.12 <color=#FF0000>스텀프</color>", new(19, 4, 21, 12), GetSrc("Monster", "stump")),
+            29 => new Monster("Lv.12 <color=#FF0000>드레이크</color>", new(18, 4, 21, 12), GetSrc("Monster", "drake")),
+            30 => new Monster("Lv.12 <color=#FF0000>토글</color>", new(1, 3, 50, 12), GetSrc("Monster", "togle")),
             //******************************************↑Level12↑******************************************
-            31 => new Monster("Lv.13 <color=#FF0000>드레이크</color>", new(20, 7, 23, 13), GetSrc("Monster", "drake")),
-            32 => new Monster("Lv.13 <color=#FF0000>토글</color>", new(7, 4, 50, 13), GetSrc("Monster", "togle")),
-            33 => new Monster("Lv.13 <color=#FF0000>방패병</color>", new(19, 7, 0, 13), GetSrc("Monster", "shield")),
+            31 => new Monster("Lv.13 <color=#FF0000>드레이크</color>", new(20, 4, 24, 13), GetSrc("Monster", "drake")),
+            32 => new Monster("Lv.13 <color=#FF0000>토글</color>", new(1, 3, 55, 13), GetSrc("Monster", "togle")),
+            33 => new Monster("Lv.13 <color=#FF0000>방패병</color>", new(19, 4, 0, 13), GetSrc("Monster", "shield")),
             //******************************************↑Level13↑******************************************
-            34 => new Monster("Lv.14 <color=#FF0000>드레이크</color>", new(21, 7, 25, 14), GetSrc("Monster", "drake")),
-            35 => new Monster("Lv.14 <color=#FF0000>토글</color>", new(8, 5, 50, 14), GetSrc("Monster", "togle")),
-            36 => new Monster("Lv.14 <color=#FF0000>방패병</color>", new(21, 8, 0, 14), GetSrc("Monster", "shield")),
+            34 => new Monster("Lv.14 <color=#FF0000>드레이크</color>", new(21, 4, 29, 14), GetSrc("Monster", "drake")),
+            35 => new Monster("Lv.14 <color=#FF0000>토글</color>", new(1, 3, 60, 14), GetSrc("Monster", "togle")),
+            36 => new Monster("Lv.14 <color=#FF0000>방패병</color>", new(21, 4, 0, 14), GetSrc("Monster", "shield")),
             //******************************************↑Level14↑******************************************
-            37 => new Monster("Lv.15 <color=#FF0000>토글</color>", new(9, 6, 50, 15), GetSrc("Monster", "togle")),
-            38 => new Monster("Lv.15 <color=#FF0000>방패병</color>", new(22, 9, 0, 15), GetSrc("Monster", "shield")),
+            37 => new Monster("Lv.15 <color=#FF0000>토글</color>", new(1, 4, 75, 15), GetSrc("Monster", "togle")),
+            38 => new Monster("Lv.15 <color=#FF0000>방패병</color>", new(22, 5, 0, 15), GetSrc("Monster", "shield")),
             //******************************************↑Level15↑******************************************
 
 

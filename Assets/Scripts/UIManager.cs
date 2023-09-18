@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI dexText;
     public Button[] statusUpButtons;
+    public GameObject levelUpText;
     public TextMeshProUGUI statusPoint;
     public RectTransform expBar;
     public RectTransform hungryBar;
@@ -101,7 +102,7 @@ public class UIManager : MonoBehaviour
     private Dictionary<int, string> _knightSkillInfoDict = new()
     {
         {0, "한 칸 이동합니다.(행동력 1 소모) 공주가 밝힌 곳은, 행동력이 소모되지 않습니다." },
-        {1, "남은 행동력을 소모하여, 체력 + Nx2, 포만감 + Nx2 을 회복합니다. (행동력 x N 소모)" },
+        {1, "남은 행동력을 소모하여, 체력 + Nx2, 포만감 + N 을 회복합니다. (행동력 x N 소모)" },
     };
 
     private void Awake()
@@ -276,6 +277,7 @@ public class UIManager : MonoBehaviour
         
         // 스텟 업 버튼
         bool canUp = _gameManager.StatusPoint > 0;
+        levelUpText.SetActive(canUp);
         foreach (var btn in statusUpButtons)
         {
             btn.gameObject.SetActive(canUp);
