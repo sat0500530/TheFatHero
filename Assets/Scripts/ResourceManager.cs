@@ -51,16 +51,19 @@ public class ResourceManager : MonoBehaviour
     {
         FieldEvents = new();
         FieldEvents.Add(new(EventType.HP, 1, GetSrc("FieldEvent", "blessinglake"), "축복의 샘입니다.\n\n체력이 1 회복됩니다."));
+        FieldEvents.Add(new(EventType.HP, 1, GetSrc("FieldEvent", "blessinglake"), "축복의 샘입니다.\n\n체력이 1 회복됩니다."));
+        FieldEvents.Add(new(EventType.HP, 1, GetSrc("FieldEvent", "blessinglake"), "축복의 샘입니다.\n\n체력이 1 회복됩니다."));
+        FieldEvents.Add(new(EventType.HP, 2, GetSrc("FieldEvent", "fruitevent"), "수풀을 헤치며 지나가고 있었습니다. 기다렸다는 듯, 탐스러워 보이는 열매를 찾았습니다./아직 신은 나를 버리지 않았나 봅니다. \n\n체력이 2 회복됩니다."));
         FieldEvents.Add(new(EventType.HP, 2, GetSrc("FieldEvent", "fruitevent"), "수풀을 헤치며 지나가고 있었습니다. 기다렸다는 듯, 탐스러워 보이는 열매를 찾았습니다./아직 신은 나를 버리지 않았나 봅니다. \n\n체력이 2 회복됩니다."));
         FieldEvents.Add(new(EventType.Power, 1, GetSrc("FieldEvent", "boyevent"), "늑대들에게 둘러싸여 있는 한 소년을 발견하고, 검을 뽑고 달려가 늑대들을 물리쳤습니다./소년은 감사하다는 인사를 하며, 자기도 꼭 커서 용사가 될 것이라 다짐합니다. 흐뭇한 표정을 지으며 갈 길을 이어서 갑니다. \n파워가 1 올라갑니다."));
         FieldEvents.Add(new(EventType.Dex, 3, GetSrc("FieldEvent", "ghost"), "갑자기 등골이 오싹해 집니다. 뒤를 돌아보니 귀신이 저를 쳐다보고 있습니다./화들짝 놀라 전력질주 합니다. \n\n 민첩이 3 증가합니다."));
         FieldEvents.Add(new(EventType.HP, -1, GetSrc("FieldEvent", "blood"), "서둘러 나아가다, 바닥에 고인 핏물에 미끄러집니다. \n\n체력이 1 줄어듭니다."));
-        FieldEvents.Add(new(EventType.HP, -2, GetSrc("FieldEvent", "goblinevent"), "수풀을 헤치며 지나가고 있었습니다. 갑자기 주위에서 고블린 덮칩니다./힘겹게 급습을 막아냈으나, 너무나 지칩니다.\n\n체력이 2 줄어듭니다."));
+        //FieldEvents.Add(new(EventType.HP, -2, GetSrc("FieldEvent", "goblinevent"), "수풀을 헤치며 지나가고 있었습니다. 갑자기 주위에서 고블린 덮칩니다./힘겹게 급습을 막아냈으나, 너무나 지칩니다.\n\n체력이 2 줄어듭니다."));
         FieldEvents.Add(new(EventType.StateCount, 3, GetSrc("FieldEvent", "cross"), "저 멀리 십자가가 보입니다.\n기사는 다시금 마음을 굳힙니다./성스러워진 마음은 몸을 강하게 해줍니다. \n\n질병이 모두 없어집니다!"));
         FieldEvents.Add(new(EventType.Hunger, -10, GetSrc("FieldEvent", "goblinfood"), "저기 고기를 먹는 고블린들이 보입니다.\n노릇노릇한 향기가 코 끝을 스칩니다./더 배가 고파집니다. \n\n포만감이 10 줄어듭니다.."));
         FieldEvents.Add(new(EventType.Hunger, 10, GetSrc("FieldEvent", "floorfood"), "앗 바닥에 고기가 놓여져있습니다.\n고민 따위 하지 않았습니다./입에 우겨넣었습니다. \n\n포만감이 10 회복됩니다."));
         FieldEvents.Add(new(EventType.Cold, 0, GetSrc("FieldEvent", "getcold"), "성 안이 급격하게 추워집니다./몸이 으슬으슬 합니다. \n\n감기에 걸립니다."));
-        FieldEvents.Add(new(EventType.HP, -2, GetSrc("FieldEvent", "arrow"), "'딸깍'\n불길한 예감이 듭니다./사방에서 화살이 날라옵니다. 빠르게 피했지만, 모두 피할 순 없었습니다. \n\n체력이 2 줄어듭니다."));
+        //FieldEvents.Add(new(EventType.HP, -2, GetSrc("FieldEvent", "arrow"), "'딸깍'\n불길한 예감이 듭니다./사방에서 화살이 날라옵니다. 빠르게 피했지만, 모두 피할 순 없었습니다. \n\n체력이 2 줄어듭니다."));
         FieldEvents.Add(new(EventType.Cost, 2, GetSrc("FieldEvent", "shortcut"), "잠시 지쳐 벽에 기댔는데, 무언가 눌리는 느낌이 났습니다.\n큰 소리와 함께 지름길이 등장했습니다./행동력이 2 회복됩니다."));
         FieldEvents.Add(new(EventType.Cost, 1, GetSrc("FieldEvent", "wind"), "창문으로 시원한 바람이 불어옵니다.\n시원한 바람은 발걸음을 가볍게 해줍니다./행동력이 1 회복됩니다."));
     }
@@ -88,7 +91,7 @@ public class ResourceManager : MonoBehaviour
     void InitMonster()
     {
         Ruggle = new Monster("러글", new(10, 5, 10, 5), GetSrc("Monster", "ruggle"));
-        DeathKnight = new Monster("데스나이트", new(20, 7, 15, 10), GetSrc("Monster", "deathknight"));
+        DeathKnight = new Monster("데스나이트", new(25, 7, 15, 10), GetSrc("Monster", "deathknight"));
         Dragon = new Monster("드래곤", new(40, 10, 20, 30), GetSrc("Monster", "dragon"));
     }
 
@@ -162,23 +165,23 @@ public class ResourceManager : MonoBehaviour
             24 => new Monster("Lv.10 <color=#FF0000>드레이크</color>", new(17, 4, 19, 10), GetSrc("Monster", "drake")),
             //******************************************↑Level10↑******************************************
             25 => new Monster("Lv.11 <color=#FF0000>스텀프</color>", new(18, 4, 19, 11), GetSrc("Monster", "stump")),
-            26 => new Monster("Lv.11 <color=#FF0000>드레이크</color>", new(18, 4, 19, 11), GetSrc("Monster", "drake")),
-            27 => new Monster("Lv.11 <color=#FF0000>토글</color>", new(1, 2, 50, 11), GetSrc("Monster", "togle")),
+            26 => new Monster("Lv.11 <color=#FF0000>드레이크</color>", new(18, 5, 19, 11), GetSrc("Monster", "drake")),
+            27 => new Monster("Lv.11 <color=#FF0000>토글</color>", new(1, 3, 50, 11), GetSrc("Monster", "togle")),
             //******************************************↑Level11↑******************************************
             28 => new Monster("Lv.12 <color=#FF0000>스텀프</color>", new(19, 4, 21, 12), GetSrc("Monster", "stump")),
-            29 => new Monster("Lv.12 <color=#FF0000>드레이크</color>", new(18, 4, 21, 12), GetSrc("Monster", "drake")),
-            30 => new Monster("Lv.12 <color=#FF0000>토글</color>", new(1, 3, 50, 12), GetSrc("Monster", "togle")),
+            29 => new Monster("Lv.12 <color=#FF0000>드레이크</color>", new(18, 5, 21, 12), GetSrc("Monster", "drake")),
+            30 => new Monster("Lv.12 <color=#FF0000>토글</color>", new(1, 4, 50, 12), GetSrc("Monster", "togle")),
             //******************************************↑Level12↑******************************************
-            31 => new Monster("Lv.13 <color=#FF0000>드레이크</color>", new(20, 4, 24, 13), GetSrc("Monster", "drake")),
-            32 => new Monster("Lv.13 <color=#FF0000>토글</color>", new(1, 3, 55, 13), GetSrc("Monster", "togle")),
-            33 => new Monster("Lv.13 <color=#FF0000>방패병</color>", new(19, 4, 0, 13), GetSrc("Monster", "shield")),
+            31 => new Monster("Lv.13 <color=#FF0000>드레이크</color>", new(20, 6, 24, 13), GetSrc("Monster", "drake")),
+            32 => new Monster("Lv.13 <color=#FF0000>토글</color>", new(1, 4, 55, 13), GetSrc("Monster", "togle")),
+            33 => new Monster("Lv.13 <color=#FF0000>방패병</color>", new(25, 5, 0, 13), GetSrc("Monster", "shield")),
             //******************************************↑Level13↑******************************************
-            34 => new Monster("Lv.14 <color=#FF0000>드레이크</color>", new(21, 4, 29, 14), GetSrc("Monster", "drake")),
-            35 => new Monster("Lv.14 <color=#FF0000>토글</color>", new(1, 3, 60, 14), GetSrc("Monster", "togle")),
-            36 => new Monster("Lv.14 <color=#FF0000>방패병</color>", new(21, 4, 0, 14), GetSrc("Monster", "shield")),
+            34 => new Monster("Lv.14 <color=#FF0000>드레이크</color>", new(21, 6, 29, 14), GetSrc("Monster", "drake")),
+            35 => new Monster("Lv.14 <color=#FF0000>토글</color>", new(1, 4, 60, 14), GetSrc("Monster", "togle")),
+            36 => new Monster("Lv.14 <color=#FF0000>방패병</color>", new(28, 5, 0, 14), GetSrc("Monster", "shield")),
             //******************************************↑Level14↑******************************************
-            37 => new Monster("Lv.15 <color=#FF0000>토글</color>", new(1, 4, 75, 15), GetSrc("Monster", "togle")),
-            38 => new Monster("Lv.15 <color=#FF0000>방패병</color>", new(22, 5, 0, 15), GetSrc("Monster", "shield")),
+            37 => new Monster("Lv.15 <color=#FF0000>토글</color>", new(1, 5, 75, 15), GetSrc("Monster", "togle")),
+            38 => new Monster("Lv.15 <color=#FF0000>방패병</color>", new(28, 6, 0, 15), GetSrc("Monster", "shield")),
             //******************************************↑Level15↑******************************************
 
 

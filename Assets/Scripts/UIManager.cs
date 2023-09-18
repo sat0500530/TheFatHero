@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
 
     [Header("BloodEffect")]
     public Image bloodEffect;
+    private bool isBloodEffectActive = false;
 
     [Header("타일 패널 UI")]
     public GameObject tileInfPanel;
@@ -102,7 +103,7 @@ public class UIManager : MonoBehaviour
     private Dictionary<int, string> _knightSkillInfoDict = new()
     {
         {0, "한 칸 이동합니다.(행동력 1 소모) 공주가 밝힌 곳은, 행동력이 소모되지 않습니다." },
-        {1, "남은 행동력을 소모하여, 체력 + Nx2, 포만감 + N 을 회복합니다. (행동력 x N 소모)" },
+        {1, "남은 행동력을 소모하여, 체력 + Nx2, 포만감 + Nx2 을 회복합니다. (행동력 x N 소모)" },
     };
 
     private void Awake()
@@ -269,7 +270,22 @@ public class UIManager : MonoBehaviour
         {
             dexText.text = $"<color=#429A38>민첩</color>  {status.Dex}";
         }
-        
+
+        if (status.CurrentHp <= 2 && !isBloodEffectActive)
+        {
+            // BloodEffect를 깜빡이도록 활성화
+            StartCoroutine(ActivateBloodEffect());
+        }
+        // HP가 2 이상이거나 이미 BloodEffect가 활성화된 경우
+        else if (status.CurrentHp > 2 && isBloodEffectActive)
+        {
+            // BloodEffect를 중지
+            Debug.Log("124124124");
+            StopCoroutine(ActivateBloodEffect());
+
+            isBloodEffectActive = false;
+            // 여기에서 BloodEffect를 비활성화하는 코드를 추가해야 할 수도 있습니다.
+        }
 
 
 
@@ -285,6 +301,23 @@ public class UIManager : MonoBehaviour
 
         doorKey.SetActive(_gameManager.HasKey);
     }
+
+    private IEnumerator ActivateBloodEffect()
+    {
+        isBloodEffectActive = true;
+        while (isBloodEffectActive)
+        {
+            Debug.Log("1144141424");
+            bloodEffect.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+
+            bloodEffect.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
 
     public void StatusUp(string statusName)
     {
@@ -485,10 +518,10 @@ public class UIManager : MonoBehaviour
     IEnumerator ShowBloodScreen()
     {
         bloodEffect.gameObject.SetActive(true);
-        bloodEffect.color = new Color(1, 0, 0, Random.Range(0.2f, 0.3f));
+        //bloodEffect.color = new Color(1, 0, 0, Random.Range(0.2f, 0.3f));
         yield return new WaitForSeconds(0.2f);
         bloodEffect.gameObject.SetActive(false);
-        bloodEffect.color = Color.clear;
+        //bloodEffect.color = Color.clear;
     }
 
     public void ActiveSomeThingBox(string text, Action endAction = null)

@@ -465,7 +465,7 @@ public class GameManager : MonoBehaviour
         if (knight.Cost >= 1)
         {
             knight.Status.CurrentHp += knight.Cost * 2 + _dataManager.KnightRestRecoveryHpAddValue;
-            knight.Status.Hunger += knight.Cost;
+            knight.Status.Hunger += knight.Cost*2;
             knight.Cost = 0;
             UIManager.Instance.UpdateKnightStatusInfo();
         }
@@ -597,7 +597,7 @@ public class GameManager : MonoBehaviour
                     // 용사가 서 있는 위치 전달 
                     if (knight.Cost > 0)
                     {
-                        _uiManager.ActiveSomeThingBox($"휴식하시겠습니까?\n(체력+{knight.Cost*2 + _dataManager.KnightRestRecoveryHpAddValue}, 포만감 +{knight.Cost})", Rest);
+                        _uiManager.ActiveSomeThingBox($"휴식하시겠습니까?\n(체력+{knight.Cost*2 + _dataManager.KnightRestRecoveryHpAddValue}, 포만감 +{knight.Cost*2})", Rest);
                     }
                     else
                     {
