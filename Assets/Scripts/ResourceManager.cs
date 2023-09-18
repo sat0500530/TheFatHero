@@ -60,7 +60,7 @@ public class ResourceManager : MonoBehaviour
         FieldEvents.Add(new(EventType.Hunger, -10, GetSrc("FieldEvent", "goblinfood"), "저기 고기를 먹는 고블린들이 보입니다.\n노릇노릇한 향기가 코 끝을 스칩니다./더 배가 고파집니다. \n\n포만감이 10 줄어듭니다.."));
         FieldEvents.Add(new(EventType.Hunger, 10, GetSrc("FieldEvent", "floorfood"), "앗 바닥에 고기가 놓여져있습니다.\n고민 따위 하지 않았습니다./입에 우겨넣었습니다. \n\n포만감이 10 회복됩니다."));
         FieldEvents.Add(new(EventType.Cold, 0, GetSrc("FieldEvent", "getcold"), "성 안이 급격하게 추워집니다./몸이 으슬으슬 합니다. \n\n감기에 걸립니다."));
-        FieldEvents.Add(new(EventType.HP, -3, GetSrc("FieldEvent", "arrow"), "'딸깍'\n불길한 예감이 듭니다./사방에서 화살이 날라옵니다. 빠르게 피했지만, 모두 피할 순 없었습니다. \n\n체력이 3 줄어듭니다."));
+        FieldEvents.Add(new(EventType.HP, -2, GetSrc("FieldEvent", "arrow"), "'딸깍'\n불길한 예감이 듭니다./사방에서 화살이 날라옵니다. 빠르게 피했지만, 모두 피할 순 없었습니다. \n\n체력이 2 줄어듭니다."));
         FieldEvents.Add(new(EventType.Cost, 2, GetSrc("FieldEvent", "shortcut"), "잠시 지쳐 벽에 기댔는데, 무언가 눌리는 느낌이 났습니다.\n큰 소리와 함께 지름길이 등장했습니다./행동력이 2 회복됩니다."));
         FieldEvents.Add(new(EventType.Cost, 1, GetSrc("FieldEvent", "wind"), "창문으로 시원한 바람이 불어옵니다.\n시원한 바람은 발걸음을 가볍게 해줍니다./행동력이 1 회복됩니다."));
     }
@@ -155,8 +155,8 @@ public class ResourceManager : MonoBehaviour
             21 => new Monster("Lv.9 <color=#FF0000>스텀프</color>", new(13, 3, 19, 9), GetSrc("Monster", "stump")),
             22 => new Monster("Lv.9 <color=#FF0000>드레이크</color>", new(13, 3, 19, 9), GetSrc("Monster", "drake")),
             //******************************************↑Level9↑******************************************
-            23 => new Monster("Lv.10 <color=#FF0000>스텀프</color>", new(14, 4, 19, 10), GetSrc("Monster", "stump")),
-            24 => new Monster("Lv.10 <color=#FF0000>드레이크</color>", new(14, 4, 19, 10), GetSrc("Monster", "drake")),
+            23 => new Monster("Lv.10 <color=#FF0000>스텀프</color>", new(16, 4, 19, 10), GetSrc("Monster", "stump")),
+            24 => new Monster("Lv.10 <color=#FF0000>드레이크</color>", new(17, 4, 19, 10), GetSrc("Monster", "drake")),
             //******************************************↑Level10↑******************************************
             25 => new Monster("Lv.11 <color=#FF0000>스텀프</color>", new(18, 4, 19, 11), GetSrc("Monster", "stump")),
             26 => new Monster("Lv.11 <color=#FF0000>드레이크</color>", new(18, 4, 19, 11), GetSrc("Monster", "drake")),
