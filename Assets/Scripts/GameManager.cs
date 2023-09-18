@@ -791,10 +791,10 @@ public class GameManager : MonoBehaviour
         switch (artifact.Type)
         {
             case ArtifactType.AllStatUp :
-                knight.Status.MaxHp     += _dataManager.ARTI_AllStatUp_Value;
-                knight.Status.CurrentHp += _dataManager.ARTI_AllStatUp_Value;
-                knight.Status.levelDex     += _dataManager.ARTI_AllStatUp_Value;
-                knight.Status.levelPow     += _dataManager.ARTI_AllStatUp_Value;
+                knight.Status.MaxHp     += 2;
+                knight.Status.CurrentHp += 2;
+                knight.Status.levelDex     += 5;
+                knight.Status.levelPow     += 1;
                 break;
             case ArtifactType.DexUp :
                 knight.Status.levelDex += _dataManager.ARTI_DEXUP_Value;

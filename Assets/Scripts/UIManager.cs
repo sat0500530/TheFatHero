@@ -419,7 +419,7 @@ public class UIManager : MonoBehaviour
             itemInf.SetActive(true);
 
             tileName.text = "고기";
-            itemText.text = "맛있어 보이는 고기입니다.";
+            itemText.text = "바닥에 고기가 떨어져 있습니다.";
         }
 
         else if (mapType == MapType.Event)

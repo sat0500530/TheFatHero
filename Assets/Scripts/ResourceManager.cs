@@ -69,7 +69,7 @@ public class ResourceManager : MonoBehaviour
     {
         var data = DataManager.Instance;
         Artifacts = new List<Artifact>();
-        Artifacts.Add(new Artifact(ArtifactType.AllStatUp, "공주의 편지", $"전체 스텟이 {data.ARTI_AllStatUp_Value}만큼 증가합니다.", GetSrc("Artifact", "princessletter")));
+        Artifacts.Add(new Artifact(ArtifactType.AllStatUp, "공주의 편지", $"체력 +2, 파워 +1, 민첩 +5 만큼 증가합니다.", GetSrc("Artifact", "princessletter")));
         Artifacts.Add(new Artifact(ArtifactType.AddAttack, "분신술 비급서", $"용사는 {data.ARTI_AddAtack_Interval}공수마다 한번 더 공격합니다.", GetSrc("Artifact", "ninja")));
         Artifacts.Add(new Artifact(ArtifactType.DexUp, "날개 달린 신발", $"용사의 민첩이 {data.ARTI_DEXUP_Value}만큼 증가합니다.", GetSrc("Artifact", "flyingshoes")));
         Artifacts.Add(new Artifact(ArtifactType.CostUp, "반짝이는 돌", $"기이한 돌의 효과로 용사와 공주는 {data.ARTI_COSTUP_Value}만큼 추가 행동력을 가집니다.", GetSrc("Artifact", "shinestone")));
@@ -95,7 +95,10 @@ public class ResourceManager : MonoBehaviour
     void InitItemEvent()
     {
         Items = new();
-        Items.Add(new(EventType.Hunger, 15, GetSrc("ItemEvent", "fruit"), "고기를 주웠다! \n\n포만감을 15 회복됩니다..!"));
+        Items.Add(new(EventType.Hunger, 20, GetSrc("ItemEvent", "fruit"), "맛있어 보이는 고기를 주웠다! \n\n포만감을 20 회복됩니다..!"));
+        Items.Add(new(EventType.Hunger, 15, GetSrc("ItemEvent", "fruit1"), "고기를 주웠다! \n\n포만감을 15 회복됩니다..!"));
+        Items.Add(new(EventType.Hunger, 5, GetSrc("ItemEvent", "fruit2"), "누가 먹다 남은 고기를 주웠다! \n\n포만감을 5 회복됩니다..!"));
+        
     }
 
     Sprite GetSrc(string folder, string name)
